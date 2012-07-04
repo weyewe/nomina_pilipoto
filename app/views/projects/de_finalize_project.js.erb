@@ -1,0 +1,5 @@
+$(document).ready(function(){
+  <% if @project.is_finalized == false %>
+    $("#entry_row_<%= @project.id %>").remove();
+  <% end %>
+});

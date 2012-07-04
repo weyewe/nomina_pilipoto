@@ -1,0 +1,663 @@
+
+/* All ajax requests are sending authenticty token*/
+$(document).ajaxSend(function(event, request, settings) {
+  if (typeof(AUTH_TOKEN) == "undefined") return;
+  // settings.data is a serialized string like "foo=bar&baz=boink" (or null)
+  settings.data = settings.data || "";
+  settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
+});
+
+$(document).ready(function() {
+  
+  $('.fancybox').fancybox();
+  
+  
+  
+  
+  if( IsImageOk('target')  ){
+    var $wrapper = $("#cropper_wrapper");
+    $wrapper.hide();
+    
+    $("#pilipoto-switcher").show();
+  }else{
+    $("#cropper_wrapper img").load(function(){
+      // console.log("after loading");
+      var $wrapper = $("#cropper_wrapper");
+      $wrapper.hide();
+      $("#pilipoto-switcher").show();
+    });
+  }
+  
+  
+  
+  $(".tooltip-able").tooltip();
+  
+  // show the loader, if everything is loaded
+  $("#loading_uploader_notification").fadeOut();
+  $("#upload_picture").fadeIn();
+  
+  $(".entry-link").click(function(){
+    var $entry_link = $(this);
+    
+    
+    var text = "" ; 
+    if( $entry_link.hasClass("entry-closer")){
+      text = "Are you sure?"
+    }else if ($entry_link.hasClass("entry-recover")){
+      text = "Are you sure?"
+    }
+    
+    if( confirm( text ) ){
+      var entry_id = $(this).attr('id').split("_")[1];
+
+      var $form = $("#close-entry form");
+      var $input_entry_id = $("#entry_id");
+
+      $input_entry_id.attr("value", entry_id );
+      
+      $entry_link.showLoading();
+
+      $.ajax({
+        url: $form.attr("action"),
+        type: "POST",
+        data: $form.serialize(),
+        dataType: 'script',
+        success: function(response){
+
+          $form.clearForm();
+          $entry_link.hideLoading();
+        }
+      });
+    }
+    
+    return false;
+  });
+
+  
+  // assignment related methods 
+  $(".checkbox_tracker").change( function(){
+    var $checkbox = $(this);
+    var after_clicked_value;
+    var max_selection = parseInt(  $("#max_selection").attr("value")  );
+    var current_count = parseInt(   $("#selected_pics_count").attr("value")   )    ;
+  
+    
+    if($checkbox.hasClass("closed-project")){
+      alert("This project is closed. You can't change the selection anymore.");
+      if(   $checkbox.is(":checked")  ) {
+        $checkbox.attr('checked', false);
+      }else{
+        $checkbox.attr('checked', true);
+      }
+      return false ;
+    }
+    
+    
+    
+    if(   $checkbox.is(":checked")  ) {
+      if( current_count >= max_selection ) {
+        alert("You have reached the max selection limit: " + max_selection + " pictures.");
+        $checkbox.attr('checked', false);
+        return false; 
+      }
+      
+      $checkbox.attr('value', <%= TRUE_CHECK %>);
+      after_clicked_value = <%= TRUE_CHECK %>;
+    }else {
+      $checkbox.attr( 'value', <%= FALSE_CHECK %> );
+       after_clicked_value = <%= FALSE_CHECK %>;
+    } 
+    var checkbox_id = $checkbox.attr("id");
+    var provider_id = checkbox_id.split("-")[0].split("_")[1];
+    var consumer_id = checkbox_id.split("-")[1].split("_")[1];
+
+    var $form = $("#checkbox_form_wrapper form");
+
+    var provider_field = $("#membership_provider");
+    provider_field.attr('value', provider_id);
+    var consumer_field = $("#membership_consumer");
+    consumer_field.attr('value', consumer_id);
+
+    var decision_field = $("#membership_decision");
+    decision_field.attr("value", after_clicked_value )
+
+    if($checkbox.hasClass("single-submit")){
+      $form.trigger('submit');
+    }else {
+
+
+      $checkbox.showLoading();
+
+      $.ajax({
+        url: $form.attr("action"),
+        type: "POST",
+        data: $form.serialize(),
+        dataType: 'script',
+        success: function(response){
+
+          $form.clearForm();
+          $checkbox.hideLoading();
+        }
+      });
+    }
+    
+    
+    
+  });
+  
+  
+  /*  For the Subject-teacher assignment 
+    or
+      For the Course-teacher assignment
+  */
+  $(".is_checked_class").change( function(){
+    var $checkbox = $(this);
+    var after_clicked_value;
+    
+    /*
+      Extracting the value of the checkbox, based on the user action
+    */
+    if(   $checkbox.is(":checked")  ) {
+      $checkbox.attr('value', <%= TRUE_CHECK %>);
+    }else{
+      $checkbox.attr( 'value', <%= FALSE_CHECK %> );
+    }
+    
+  });
+  
+  
+  $("a.close").live("click", function(){
+    var $this = $(this);
+    var $container = $(this).parents(".alert");
+    $container.fadeOut();
+    $container.remove();
+    return false;
+  });
+  
+  
+  // $(".alert-message").alert()
+  
+  
+  //  ajax post 
+  $("#save_button").click(function(){
+    var destination_url = $("#destination_url").attr("value");
+    
+    
+    var selection_array = [];
+    $(".is_checked_class").each(function(){
+      var $input_checkbox = $(this);
+      
+      // console.log( "teacher id is " + teacher_id);
+      var teacher_id = $input_checkbox.attr("id").split("_")[1];
+      //  check the checked value.. if it is , send 1 to server, if it is not, send 0 to server
+      var object = {};
+      object["user"] =  teacher_id; // the id
+      object["value"]  = $input_checkbox.attr("value"); 
+      selection_array.push( object );
+    });
+    
+    
+    selection_array =  JSON.stringify(selection_array);
+    $.ajax({
+      url : destination_url, 
+      type : "POST",
+      data : selection_array,
+      dataType : 'script',
+      success : function( response ) {
+        // $whole_container.hideLoading();
+      }
+    });
+    
+  });
+  
+  
+  
+  /* AjaxForm, auto submit */
+  $("form.ajaxform").live('submit',function(){
+     var $this = $(this);
+     var destination = $(this).attr('action');
+     var $form_container = $this.parent();
+     $this.showLoading();
+   	$.ajax({
+   		url: destination,
+   		type: "POST",
+   		data: $(this).serialize(),
+   		dataType: 'script',
+   		success: function(response){
+   		  $this.clearForm();
+        $this.hideLoading();
+        if($this.hasClass("pilipoto-jcrop")){
+          PilipotoJcropApi.release();
+        }
+        
+   		}
+   	});
+   	return false;
+   });
+   
+   /* Finalize Selection by client */
+   $("form#finalize_selection").live('submit',function(){
+      var $this = $(this);
+      var destination = $(this).attr('action');
+      var $form_container = $this.parent();
+      // find the checked shties 
+      var current_count = parseInt(   $("#selected_pics_count").attr("value")   );
+      var max_selection = parseInt(  $("#max_selection").attr("value")  );
+      if( current_count != max_selection ){
+        alert("You have to select " + max_selection + " pictures. You have only selected " + current_count + " pictures");
+        
+      }else{
+        if(confirm("Are you sure that you want to finalize?")) {
+          $this.showLoading();
+          $.ajax({
+            url: destination,
+            type: "POST",
+            data: $(this).serialize(),
+            dataType: 'script',
+            success: function(response){
+              $this.clearForm();
+              $this.hideLoading();
+              if($this.hasClass("pilipoto-jcrop")){
+                PilipotoJcropApi.release();
+              }
+            }
+          });
+        }else{
+          
+        }
+        
+      }
+      
+      
+    	return false;
+    });
+   
+   
+   /* AjaxForm, special for grading approval */
+   
+   $(".grading-button").live('click', function(){
+     // console.log("eh, clicked");
+     var $this = $(this);
+     var $form = $this.parents("form.grading-ajaxform"); 
+     var destination = $form.attr('action');
+     console.log(destination);
+     var $table = $("table", $form);
+     
+     if( $this.attr("id") == "approve_submission" ){
+       $("#approval_code").attr('value',  '<%= ACCEPT_SUBMISSION %>' );
+       // console.log("The value is " + <%= ACCEPT_SUBMISSION %> )
+     }else {
+       $("#approval_code").attr('value',  '<%= REJECT_SUBMISSION %>' );
+       // console.log("The value is " + <%= REJECT_SUBMISSION %> )
+     }
+     
+     
+     $form.showLoading();
+     $.ajax({
+       url  : destination,
+       type : "POST",
+       data : $form.serialize(),
+       dataType :'script',
+       success: function(response){
+         $form.clearForm();
+         $form.hideLoading();
+         //  the response is a script, removing the form 
+       }
+     });
+         return false; 
+     
+   });
+   
+   
+   $("form.grading-ajaxform").live('submit',function(){
+          var $this = $(this);
+          var destination = $(this).attr('action');
+          var $form_container = $this.parent();
+          $this.showLoading();
+         $.ajax({
+           url: destination,
+           type: "POST",
+           data: $(this).serialize(),
+           dataType: 'script',
+           success: function(response){
+             $this.clearForm();
+             $this.hideLoading();
+             PilipotoJcropApi.release();
+           }
+         });
+         return false;
+        });
+   
+   
+   
+   /* Respond to clicking Reply -> first child comment creation .. we have to use event delegation for 
+   these 2 shites. or else, too dangerous. crash, if there are too many comments*/
+   $("a.first_root_comment_clicker").live('click', function(){
+     var $this = $(this);
+     var $container = $(this).parents(".first_child_comment_wrapper");
+     var $form = $(".first_child_form", $container);
+
+     $this.hide();
+     $form.fadeIn();
+     $(".comment_body_text_area", $form).focus();
+     return false;
+   });
+
+   $("a.cancel_first_child_comment").live('click', function(){
+     var $this = $(this);
+     var $container = $(this).parents(".first_child_comment_wrapper");
+     var $form = $(".first_child_form", $container);
+     var $reply_button = $(".first_root_comment_clicker", $container);
+
+     $(".comment_body_text_area", $form).blur();
+     $form.hide();
+     $reply_button.show();
+     return false;
+   });
+   
+   
+   
+   /* 
+   FOR THE CHILD COMMENT
+   Respond to clicking Reply -> first child comment creation .. we have to use event delegation for 
+   these 2 shites. or else, too dangerous. crash, if there are too many comments*/
+   $("a.child_comment_clicker").live('click', function(){
+     var $this = $(this);
+     var $container = $(this).parents(".child_comment_wrapper");
+     var $form = $(".child_form", $container);
+     
+     
+     $this.hide();
+     $form.fadeIn();
+     $(".comment_body_text_area", $form).focus();
+     
+     return false;
+   });
+
+   $("a.cancel_child_comment").live('click', function(){
+     var $this = $(this);
+     var $container = $(this).parents(".child_comment_wrapper");
+     var $form = $(".child_form", $container);
+     var $reply_button = $(".child_comment_clicker", $container);
+
+
+     $(".comment_body_text_area", $form).blur();
+     $form.hide();
+     $reply_button.show();
+     return false;
+   });
+   
+   
+   /* The event delegation */
+   // $("ol.root_comment_wrapper").live('click', function(e){
+   //    if ( $(e.target).hasClass("first_root_comment_clicker") ) {  
+   //      var $this = $(e.target);
+   //      var $container = $(this).parents(".first_child_comment_wrapper");
+   //      var $form = $(".first_child_form", $container);
+   // 
+   //      $this.hide();
+   //      $form.fadeIn();
+   // 
+   //      return false;
+   //    }
+   // 
+   //    if ( $(e.target).hasClass("cancel_first_child_comment") ) {  
+   //      var $this = $(e.target);
+   //      var $container = $this.parents(".first_child_comment_wrapper");
+   //      var $form = $(".first_child_form", $container);
+   //      var $reply_button = $(".first_root_comment_clicker", $container);
+   // 
+   //      $form.hide();
+   //      $reply_button.show();
+   //      return false;
+   //    }
+   // 
+   //  });
+   //  
+   
+
+   $('.transloadit-input').change(function(){
+     var $this = $(this);
+     var $form = $this.parents("form");
+     var $submit_button = $(".submit-button", $form);
+     
+     if ($(this).val()) {
+       $submit_button.show();
+       // $('input:submit').attr('disabled',false);
+     }else{
+       $submit_button.hide();
+     }
+   });
+
+   /*
+   For publishing articles
+   */
+   
+   $(".publish-link").live('click', function(){
+     var $entry_link = $(this);
+
+
+     var text = "Are you sure?";
+
+     if( confirm( text ) ){
+       var entry_id = $(this).attr('id').split("_")[1];
+
+       var $form = $("#article-publisher form");
+       var $input_entry_id = $("#entry_publish_id");
+       var $action_publisher = $("#publisher_action");
+
+       $input_entry_id.attr("value", entry_id );
+       if( $entry_link.hasClass("publish") ){
+         $action_publisher.attr("value", parseInt('<%= TRUE_CHECK %>') );
+       }else if( $entry_link.hasClass("unpublish") ) {
+         $action_publisher.attr("value", parseInt('<%= FALSE_CHECK %>') );
+       }
+       
+       $entry_link.showLoading();
+
+       $.ajax({
+         url: $form.attr("action"),
+         type: "POST",
+         data: $form.serialize(),
+         dataType: 'script',
+         success: function(response){
+
+           $form.clearForm();
+           // $entry_link.hideLoading();
+         }
+       });
+     }
+
+     return false;
+   });
+       
+  /*
+  Independent Article 
+  */
+  
+  $("#trigger-independent-article-form").click(function(){
+    var $trigger_button = $(this);
+    
+    if( $trigger_button.hasClass('btn-success') ){
+      $("#new_independent_article_wrapper").show();
+      $trigger_button.removeClass('btn-success');
+      $trigger_button.addClass('btn-danger');
+      $trigger_button.text("Cancel  New Independent Article Creation");
+    }else if( $trigger_button.hasClass('btn-danger')  ){
+      $("#new_independent_article_wrapper").hide();
+      $trigger_button.removeClass('btn-danger');
+      $trigger_button.addClass('btn-success');
+      $trigger_button.text("Add New Independent Article");
+      var $form = $("#new_independent_article_wrapper form");
+      $form.clearForm();
+    }
+    
+    return false ;
+    
+  });
+       
+   /* For positional comment */
+   
+  $(window).resize(function(){
+    refreshMap();
+  });
+ 
+});
+
+
+$.fn.clearForm = function() {
+  return this.each(function() {
+    var type = this.type, tag = this.tagName.toLowerCase();
+    if (tag == 'form')
+      return $(':input',this).clearForm();
+    if (type == 'text' || type == 'password' || tag == 'textarea')
+      this.value = '';
+    else if (type == 'checkbox' || type == 'radio')
+      this.checked = false;
+    else if (tag == 'select')
+      this.selectedIndex = -1;
+  });
+};
+/*
+This one is to refresh map after positional comment creation 
+*/
+function refreshMap(){
+  // console.log("refresh map normal");
+  var $switcher = $("#pilipoto-switcher"); 
+  var $wrapper, scaling_ratio; 
+  var normal_image_wrapper_width = parseInt(  <%= DISPLAY_IMAGE_WIDTH %> );
+  var marker_width_adjustment = parseInt(  <%= POSITIONAL_COMMENT_MARKER_WIDTH %> )/2; 
+  // var marker_width_adjustment = 44/2; 
+    // console.log("marker_width_adjustment: " + marker_width_adjustment);
+  
+  
+  if(  $switcher.hasClass("croppingMode")){
+    $wrapper = $("#cropper_wrapper");
+    var wrapper_width = parseInt( $wrapper.width()  );
+    scaling_ratio = wrapper_width / normal_image_wrapper_width;
+    refreshJCropBinding();
+    
+    
+    
+  }else if($switcher.length == 0 ||  $switcher.hasClass("waitMode")){
+    // no switcher at all. 
+    $wrapper = $("#display_wrapper");
+    var wrapper_width = parseInt( $wrapper.width()  );
+    scaling_ratio = wrapper_width / normal_image_wrapper_width;
+  }
+  
+   $(".positional_comment_wrapper", $wrapper).each(function(){
+        var $this = $(this);
+        var x_start = parseInt(  $(".x_start", $this ).attr("value")) ;
+        var y_start = parseInt(  $(".y_start", $this ).attr("value")  )  ; 
+  
+        var final_x_start = x_start * scaling_ratio - marker_width_adjustment;
+        var final_y_start = y_start * scaling_ratio- marker_width_adjustment;
+     
+        var $tag = $(".tag", $this);
+        $tag.css("left", final_x_start.toString() + "px" );
+        $tag.css("top", final_y_start.toString() + "px" );
+        
+        $this.removeClass("hide");
+   });
+   
+   
+   /* delete virgin pic */
+  
+}
+
+function refreshMapAfterClick(){
+  // console.log("refresh map after click");
+  
+  var $switcher = $("#pilipoto-switcher"); 
+  var $wrapper, scaling_ratio; 
+  var normal_image_wrapper_width = parseInt(  <%= DISPLAY_IMAGE_WIDTH %>);
+  var marker_width_adjustment = parseInt(  <%= POSITIONAL_COMMENT_MARKER_WIDTH %>)/2; 
+  
+  // var marker_width_adjustment = 44/2; 
+  // console.log("marker_width_adjustment: " + marker_width_adjustment);
+  
+  
+  if( $switcher.hasClass("croppingMode")){
+    // so, the switcher has gone from waitMode to croppingMode to the waitMode
+    // (we need to rearrange the displayWrapper) 
+    // or there is no switcher at all 
+
+    $wrapper = $("#cropper_wrapper");
+    var wrapper_width = parseInt( $wrapper.width()  );
+    scaling_ratio = wrapper_width / normal_image_wrapper_width;
+    
+  }else if( $switcher.hasClass("waitMode")){
+    $wrapper = $("#display_wrapper");
+    var wrapper_width = parseInt( $wrapper.width()  );
+    scaling_ratio = wrapper_width / normal_image_wrapper_width;
+  }
+  
+ 
+  
+   $(".positional_comment_wrapper", $wrapper).each(function(){
+        var $this = $(this);
+        var x_start = parseInt(  $(".x_start", $this ).attr("value")) ;
+        var y_start = parseInt(  $(".y_start", $this ).attr("value")  )  ; 
+  
+        var final_x_start = x_start * scaling_ratio - marker_width_adjustment ;
+        var final_y_start = y_start * scaling_ratio - marker_width_adjustment ;
+     
+        var $tag = $(".tag", $this);
+        $tag.css("left", final_x_start.toString() + "px" );
+        $tag.css("top", final_y_start.toString() + "px" );
+        
+        $this.removeClass("hide");
+   });
+   
+   
+ 
+   
+}
+
+
+
+function is_mobile() {
+
+  var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+  if (mobile) {  
+    return true;
+  }
+
+  return false; 
+
+
+}
+
+(function( $ ) {
+  $.fn.loadImage = function(src,cb,image) {
+    // console.log("calling me: " +  (new Date).getTime() );
+    var self = this,
+    image = image || new Image();
+    setTimeout(function() {
+      if (image.src != src)
+        image.src = src;
+      if (!image.complete)
+        return self.loadImage(src,cb,image)
+
+      $(self).attr('src',src)
+      cb.call(self)
+    },50);
+  };
+})( jQuery );
+
+
+function IsImageOk(img_id){
+  // http://www.sajithmr.me/javascript-check-an-image-is-loaded-or-not
+  var img = document.getElementById( img_id );
+  if (!img.complete) {
+    return false;
+  }
+  
+  if (typeof img.naturalWidth != undefined && img.naturalWidth  == 0) {
+    return false;
+  }
+
+  // No other way of checking: assume it’s ok.
+  return true;
+}

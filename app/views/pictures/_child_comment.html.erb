@@ -1,0 +1,38 @@
+
+<li class="child_comment clearfix">
+  <a href="#" class="thumbnail child-avatar-wrapper" style="text-align:center;" >
+    <!-- <img  src="http://pilipoto.com/assets/y-u-not-upload-profile-pic-0287fdea696415033741977ab4b559d3.jpg" class="avatar"  > -->
+    <%= image_tag AVATAR_IMAGE, :class => "avatar"%>
+    
+  </a>
+
+  <div class="child-particulars">
+    <div class="name" > 
+      <% user = child_comment.user %>
+      <% project = picture.project %>
+      <% project_membership = project.get_project_membership_for(user) %>
+      
+      <% if project_membership.has_project_role?(:client)%>
+        <!-- Jimmy Lin -->
+        <span class="label">Client</span>
+      <% elsif project_membership.has_project_role?(:collaborator) %>
+        <!-- Christian Tan -->
+        <span class="label label-info">Collaborator</span>
+      <% elsif project_membership.has_project_role?(:owner) %>
+        <!-- Michael Leo -->
+        <span class="label label-info">Project Lead</span>
+      <% end %>
+    </div>
+    
+    
+    
+    
+    
+    
+    <blockquote class="pull-right">
+      <p><%= child_comment.body%></p>
+    </blockquote>
+  </div>
+  <br />
+</li>
+
