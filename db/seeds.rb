@@ -50,37 +50,15 @@ special_user = User.create :email => "rajakuraemas@gmail.com",
 special_user.roles << company_admin_role
 special_user.save
 
-# User.create_company_admin
-
-employee_1 = User.create :email => "employee_1@gmail.com",
-              :password => "employee_1",
-              :password_confirmation => "employee_1"
-
-employee_1.roles << standard_role
-employee_1.save
-
-employee_2 = User.create :email => "employee_2@gmail.com",
-              :password => "employee_2",
-              :password_confirmation => "employee_2"
-
-employee_2.roles << standard_role
-employee_2.save
 
 
-client_1 = User.create :email => "client_1@gmail.com",
-              :password => "client_1",
-              :password_confirmation => "client_1"
+client_demo = User.create :email => "client_demo@pilipoto.com",
+              :password => "client_demo",
+              :password_confirmation => "client_demo"
 
-client_1.roles << standard_role
-client_1.save
+client_demo.roles << standard_role
+client_demo.save
 
-              
-client_2 = User.create :email => "client_2@gmail.com",
-              :password => "client_2",
-              :password_confirmation => "client_2"
-
-client_2.roles << standard_role
-client_2.save 
 
 puts "Done with creating user entities"
 

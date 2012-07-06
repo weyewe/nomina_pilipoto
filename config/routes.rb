@@ -42,11 +42,12 @@ Neopilipoto::Application.routes.draw do
   # fill in the description , title, teaser 
   match 'edit_article_content/:article_id' => 'articles#edit_article_content', :as => :edit_article_content
   match 'update_article_content/:article_id' => 'articles#update_article_content', :as => :update_article_content
+  match 'finalize_article' => "articles#finalize_article", :as => :finalize_article
   # add the display images
   
   
   match 'edit_image_ordering/:article_id' => 'articles#edit_image_ordering', :as => :edit_image_ordering
-  match 'update_image_ordering/:article_id' => 'articles#update_image_ordering', :as => :update_image_ordering
+  match 'update_image_ordering/:article_id/:independent_article_value' => 'articles#update_image_ordering', :as => :update_image_ordering
   
   
   match 'edit_publication/:article_id' => 'articles#edit_publication', :as => :edit_publication
@@ -155,6 +156,11 @@ Neopilipoto::Application.routes.draw do
   
   
   
+=begin
+  Article Creation
+=end
+
+ 
   # match 'execute_select_picture' => "pictures#execute_select_picture", :as => :execute_select_picture
   # match 'execute_project_selection_done' => "projects#execute_project_selection_done", :as => :execute_project_selection_done
   

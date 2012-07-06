@@ -5,7 +5,7 @@
         "From Project: #{@project.title}").html_safe %>
   <% else %>
     <%= create_guide("Edit article", 
-        "Independent Article, title: #{@article.title}").html_safe %>
+        "Independent Article, title: <b>#{@article.title}</b>").html_safe %>
   <% end %>
   
   <% if params[:notice] %>

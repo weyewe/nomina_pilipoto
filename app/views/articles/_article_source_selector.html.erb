@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs" id="tab">
+  <li class="<%= 'active' if is_migrate_from_project == true %>">
+    <a  href="<%= new_article_url.html_safe %>">
+      <strong>Migrate From Project</strong>
+    </a>
+  </li>
+  <li class="<%= 'active' if is_migrate_from_project == false %>">
+    <a href="<%= new_independent_article_url.html_safe %>">
+      <strong>
+        New Article
+      </strong>
+    </a>
+  </li>
+</ul>

@@ -1,5 +1,12 @@
 class ArticlesController < ApplicationController
   
+  
+  def new
+    @projects = current_user.finalized_projects
+    add_breadcrumb "Select  project", 'select_project_to_create_article_path'
+    @is_migrate_from_project = true 
+    render :file => "projects/articles/select_project_to_create_article"
+  end
 =begin
   Article Creation : from project and independent 
 =end
@@ -31,6 +38,7 @@ class ArticlesController < ApplicationController
                     
     @new_article = Article.new  
     
+    @is_migrate_from_project = false
     add_breadcrumb "Create or Manage Independent Article", 'new_independent_article_path'
     
     
@@ -39,14 +47,19 @@ class ArticlesController < ApplicationController
   def create_independent_article
     
     # if @article.save 
-    if @article = Article.create_article_with_user_company(params[:article] , current_user )
+    @article = Article.create_article_with_user_company(params[:article] , current_user )
+    if @article.save 
       redirect_to new_independent_article_url( :notice => "Success in creating article with title: <b>#{@article.title}</b>")
     else
-      redirect_to new_independent_article_url( :error => "Fail to create article")
+      redirect_to new_independent_article_url( :error => "Fail to create article. Title must not be empty")
     end
     
   end
   
+  def finalize_article
+    @articles = current_user.company_under_perspective.articles.order("created_at DESC")
+    add_breadcrumb "Create or Manage Independent Article", 'new_independent_article_path'
+  end
   
   def edit_independent_article_content
     edit_content_routine
@@ -57,10 +70,13 @@ class ArticlesController < ApplicationController
   
   def edit_independent_article_image_ordering
     edit_image_ordering_routine
-    
+    @independent_article_value = INDEPENDENT_ARTICLE_VALUE
+    @new_article_picture = ArticlePicture.new
     add_breadcrumb "Select  project", 'new_independent_article_path'
     set_breadcrumb_for @article, 'edit_independent_article_image_ordering_path' + "(#{@article.id})", 
           "Edit Image Ordering"
+          
+    render :file => "articles/edit_image_ordering"
   end
   
   def edit_independent_article_publication
@@ -123,7 +139,8 @@ class ArticlesController < ApplicationController
   def edit_image_ordering
     
     edit_image_ordering_routine
-    
+    @new_article_picture = ArticlePicture.new 
+    @independent_article_value = ARTICLE_FROM_PROJECT_VALUE
     add_breadcrumb "Select  project", 'select_project_to_create_article_path'
     set_breadcrumb_for @article, 'edit_image_ordering_path' + "(#{@article.id})", 
           "Edit Image Ordering"
@@ -133,7 +150,15 @@ class ArticlesController < ApplicationController
     
     update_image_ordering_routine
     
-    redirect_to edit_image_ordering_url( params[:article_id], :notice => "Image Ordering is Successful!" )
+    if params[:independent_article_value].to_i == INDEPENDENT_ARTICLE_VALUE
+      redirect_to edit_independent_article_image_ordering_url( params[:article_id], :notice => "Image Ordering is Successful!" )
+      return
+    else
+      redirect_to edit_image_ordering_url( params[:article_id], :notice => "Image Ordering is Successful!" )
+      return 
+    end
+    
+    
   end
   
 =begin

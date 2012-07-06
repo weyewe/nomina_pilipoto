@@ -455,11 +455,15 @@ module ApplicationHelper
       return create_process_nav(COLLABORATION_PROCESS_LIST, params )
     end
     
-    if symbol == :marketing 
-      return create_process_nav(MARKETING_PROCESS_LIST, params )
+    if symbol == :marketing_content 
+      return create_process_nav(MARKETING_CONTENT_PROCESS_LIST, params )
     end
     
-    
+    # if symbol == :marketing_homepage 
+    #     return create_process_nav(MARKETING_PROCESS_LIST, params )
+    #   end
+    #   
+    #   
     
     if symbol == :teacher
       return create_process_nav(TEACHER_PROCESS_LIST, params )
@@ -782,23 +786,10 @@ module ApplicationHelper
   }
   
   
-  MARKETING_PROCESS_LIST = {
-    :header_title => "Page Management",
+  MARKETING_CONTENT_PROCESS_LIST = {
+    :header_title => "Article Content Management",
     :processes => [
-      {
-        :title => "Homepage Images",
-        :destination_link => "select_article_to_upload_for_front_page_image_url", 
-        :conditions => [
-          {
-            :controller => 'articles',
-            :action => 'select_article_to_upload_for_front_page_image'
-          },
-          {
-            :controller => 'article_pictures',
-            :action => 'new'
-          }
-        ]
-      },
+      
       {
         :title => "Publish Article from Project",
         :destination_link => "select_project_to_create_article_url",
@@ -821,18 +812,112 @@ module ApplicationHelper
           }
         ]
       },
+      
       {
         :title => "Independent Article",
         :destination_link => "new_independent_article_url",
         :conditions => [
           {
             :controller =>'articles',
-            :action => 'new_independent_article'
+            :action => ''
+          }
+        ]
+      },
+      {
+        :title => "All Articles",
+        :destination_link => "new_independent_article_url",
+        :conditions => [
+          {
+            :controller =>'',
+            :action => ''
+          }
+        ]
+      },
+      {
+        :title => "Create Article",
+        :destination_link => "new_article_url",
+        :conditions => [
+          {
+            :controller =>'articles',
+            :action => 'new'
+          },
+          {
+            :controller => "articles",
+            :action => "new_independent_article"
+          }
+        ]
+      },
+      {
+        :title => "Finalize Article",
+        :destination_link => "finalize_article_url",
+        :conditions => [
+          {
+            :controller =>'articles',
+            :action => 'finalize_article'
           }
         ]
       }
+      
+      
+      # ,
+      #       
+      #       {
+      #         :title => "Add Video to Article",
+      #         :destination_link => "new_independent_article_url",
+      #         :conditions => [
+      #           {
+      #             :controller =>'articles',
+      #             :action => 'new_independent_article'
+      #           }
+      #         ]
+      #       },
+      #       {
+      #         :title => "Homepage Images",
+      #         :destination_link => "select_article_to_upload_for_front_page_image_url", 
+      #         :conditions => [
+      #           {
+      #             :controller => 'articles',
+      #             :action => 'select_article_to_upload_for_front_page_image'
+      #           },
+      #           {
+      #             :controller => 'article_pictures',
+      #             :action => 'new'
+      #           }
+      #         ]
+      #       }
     ]
   }
+  
+  # MARKETING_HOMEPAGE_PROCESS_LIST = {
+  #   :header_title => "HomePage Management",
+  #   :processes => [
+  #     
+  #     {
+  #       :title => "Add Video to Article",
+  #       :destination_link => "new_independent_article_url",
+  #       :conditions => [
+  #         {
+  #           :controller =>'articles',
+  #           :action => 'new_independent_article'
+  #         }
+  #       ]
+  #     },
+  #     {
+  #       :title => "Homepage Teaser Media",
+  #       :destination_link => "select_article_to_upload_for_front_page_image_url", 
+  #       :conditions => [
+  #         {
+  #           :controller => 'articles',
+  #           :action => 'select_article_to_upload_for_front_page_image'
+  #         },
+  #         {
+  #           :controller => 'article_pictures',
+  #           :action => 'new'
+  #         }
+  #       ]
+  #     }
+  #   ]
+  # }
   
   
     

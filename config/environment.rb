@@ -209,3 +209,6 @@ FANCYBOX_ASSET_URL = {
   :fancybox_sprite => 'http://s3.amazonaws.com/circle-static-assets/fancybox/fancybox_sprite.png'
 }
 
+
+INDEPENDENT_ARTICLE_VALUE = 0 
+ARTICLE_FROM_PROJECT_VALUE =  1 

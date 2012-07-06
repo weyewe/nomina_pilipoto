@@ -1,143 +1,163 @@
-
-
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
 <head>
+  
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="author" content="ThemeFuse" />
   <meta name="description" content="" />
   <meta name="keywords" content="" />
   <meta name="google-site-verification" content="AztCWFNIdH26d4wsUNG_bVrR8eOCYSxdlx8U1-mvcDI" />
-  <title>Photo Artist - Index</title>
+  <title>Nomina Pictures</title>
 
   <%= stylesheet_link_tag    "front_page", :media => "all" %>
   <%#= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
-
-  <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
-  <!--[if IE 7]><link rel="stylesheet" type="text/css" href="front_page/ie.css" /><![endif]-->
-
-
-<!-- 
-  <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
   
-  
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/preloadCssImages.js"></script>
-  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="js/jquery.tools.min.js"></script>
-  <script type="text/javascript" src="js/general.js"></script>
 
-  <link href="css/supersized.css" rel="stylesheet" type="text/css" media="screen" />
-  <script type="text/javascript" src="js/slideshow/supersized.3.2.6.min.js"></script>
-  <script type="text/javascript" src="js/slideshow/supersized.photoartist.js"></script>
-  -->
-  
-  <!-- Here comes the slider jQuery -->
-  <!-- 
-  <script type="text/javascript">			
-  jQuery(document).ready(function($) {
-
-    $('#header_pane').toggle(function(){
-      $(this).addClass('closed').animate({top: 0}, 300);
-      $('.header').slideUp(300);
-      $('#slide_info_container').animate({top: 32}, 300);
-    }, function () {
-      $(this).removeClass('closed').animate({top: 76}, 300);
-      $('.header').slideDown(300);
-      $('#slide_info_container').animate({top: 107}, 300);
-    });
-
-    $('#slide_info_toggle').toggle(function(){
-      $(this).addClass('closed');
-      $('#slidecaption, #slidedescription').hide();
-    }, function () {
-      $(this).removeClass('closed');
-      $('#slidecaption, #slidedescription').show();
-    });
-    
-    // extract the supersized link 
-    var slides_array  = [];
-    $("#supersized_wrapper li").each(function(){
-      var $this = $(this);
-      slides_array.push(
-        {
-          image: $(".display_image", $this).text(),
-          thumb: $(".thumb_image", $this).text(),
-          title: $(".title", $this).text(),
-          desc: $(".description", $this).text()
-        }
-      );
-    });
-
-    $.supersized({
-      autoplay                :   1,
-
-      // Functionality
-      slide_interval          :   4500,		// Length between transitions
-      transition              :   1, 			// 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-      transition_speed	:   600,		// Speed of transition
-
-      // Components							
-      slide_links		:   'blank',	// Individual links for each slide (Options: false, 'num', 'name', 'blank')
-      slides 			:   slides_array // [     // Slideshow Images
-       //      {image : 'images/supersized/slides/slide_01.jpg', title : 'Why do we use it?', desc: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.', thumb : 'images/supersized/thumb/slide_01_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_02.jpg', title : 'What is Lorem Ipsum?', desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.', thumb : 'images/supersized/thumb/slide_02_thb.jpg'}, 
-       //      {image : 'images/supersized/slides/slide_03.jpg', thumb : 'images/supersized/thumb/slide_03_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_04.jpg', thumb : 'images/supersized/thumb/slide_04_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_05.jpg', title : 'Where can I get some?', desc: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.',thumb : 'images/supersized/thumb/slide_05_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_06.jpg', thumb : 'images/supersized/thumb/slide_06_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_07.jpg', thumb : 'images/supersized/thumb/slide_07_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_08.jpg', title : 'Who created it?', desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.', thumb : 'images/supersized/thumb/slide_08_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_09.jpg', thumb : 'images/supersized/thumb/slide_09_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_10.jpg', thumb : 'images/supersized/thumb/slide_10_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_11.jpg', title : 'Where does it come from?', desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.',thumb : 'images/supersized/thumb/slide_11_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_12.jpg', thumb : 'images/supersized/thumb/slide_12_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_13.jpg', thumb : 'images/supersized/thumb/slide_13_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_14.jpg', thumb : 'images/supersized/thumb/slide_14_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_15.jpg', thumb : 'images/supersized/thumb/slide_15_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_16.jpg', title : 'Where can I get some?', desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.',thumb : 'images/supersized/thumb/slide_16_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_17.jpg', thumb : 'images/supersized/thumb/slide_17_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_18.jpg', thumb : 'images/supersized/thumb/slide_18_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_19.jpg', thumb : 'images/supersized/thumb/slide_19_thb.jpg'},
-       //      {image : 'images/supersized/slides/slide_20.jpg', thumb : 'images/supersized/thumb/slide_20_thb.jpg'}
-       //      ]        
-    });
-  });
-  </script>
-
--->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="includes/js/jquery-ui-1.8.21.custom.min.js"></script>
+	<script type="text/javascript" src="includes/js/jquery.anythingslider.min.js"></script>
+	<script type="text/javascript" src="includes/js/jquery.colorbox-min.js"></script>
+	<script type="text/javascript" src="includes/js/twitter.js"></script>
+	<script type="text/javascript" src="includes/js/hoverIntent.js"></script>
+	<script type="text/javascript" src="includes/js/superfish.js"></script>	
+	<script type="text/javascript" src="includes/js/jquery.functions.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css" />
+	<link rel="stylesheet" type="text/css" href="includes/css/anythingslider.css" />
+	<link rel="stylesheet" type="text/css" href="includes/css/colorbox.css" />
+	<link rel="stylesheet" type="text/css" href="includes/css/superfish.css" />
+	
 </head>
-
 <body>
-  <ul id="supersized_wrapper" style="display:none">
-    <%  (0..19).each do |x| %>
-      <li>
-        <span class="display_image"><%= IMAGE_ARRAY[x].html_safe %></span>
-        <span class="thumb_image"><%= THUMB_IMAGE_ARRAY[x].html_safe %></span>
-        <span class="title">Where does it come from?</span>
-        <span class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</span>
-      </li>
-    <% end %>
-  </ul>
-  
-  <%= render :partial => "layouts/front_page/header"%>
- 
-  <%= yield %>
+	
+	<div id="box">
+		<div id="inner_box">Hey! We've put this bar here so you can put some awesome cool stunning great message!</div>
+		<div id="box_close">x close</div>		
+	</div>
 
-
-  <!--Supersized Navigation-->
-  <a id="prevslide" class="load-item"></a>
-  <a id="nextslide" class="load-item"></a>
-
-  <div id="thumb-tray" class="load-item">
-    <a id="tray-button">
-      <%= get_static_image_tag(:button_tray_up, {:id => "tray-arrow"})%>
-      <!-- <img alt="" id="tray-arrow" src="images/supersized/button-tray-up.png"/> -->
-    </a>
-  </div>
-
+	<div id="header">
+		<div id="inner_header">
+			<div id="logo"><a href="index.php"><img src="images/logo.png" alt="lovo logo" /></a></div>
+			<div id="menu">
+				<ul class="sf-menu">
+					<li class="current active parent">
+						<a class="active" href="index.php">Home</a>
+					</li>
+					<li class="parent">
+						<a href="portfolio.php">Portfolio</a>
+					</li>
+					<li class="parent">
+						<a href="#">Drops</a>
+						<ul>
+							<li>
+								<a href="portfolio_case.php">Portfolio case</a>
+							</li>							
+							<li>
+								<a href="blog.php">Blog</a>
+							</li>							
+							<li>
+								<a href="blog_comment.php">Blog comment</a>
+							</li>
+						</ul>		
+					</li>
+					<li class="parent">
+						<a href="blog.php">Blog</a>
+					</li>				
+					<li class="parent">
+						<a href="contact.php">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="wrapper">
+				
+		<div id="blue">
+			<h1>Recent work.</h1>
+			<span id="contact_label">E: contact@nominaPics.com | T: +62.821.688.88.660</span>
+			
+			<%= render :partial => 'layouts/front_page/slider/slider' %>
+		</div>
+		
+		<div id="content">
+			<div id="content_left">
+				<h2>Latest blogs.</h2>
+				<img src="images/latest_blogs/article_1.jpg" alt="article 1" />
+				<h2 class="noborder">The Legend of Zelda.</h2>
+				<p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
+				<p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>			
+				<div class="readmore black"><a href="#">Read more</a></div>
+				
+				<div class="spacer"></div>
+				
+				<h2>News.</h2>
+				<img src="images/news/image_1.jpg" alt="image 1" />
+				<h2 class="noborder">Good misha magazine.</h2>
+				<p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
+				<p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>			
+				<div class="readmore yellow"><a href="#">Read more</a></div>		
+				
+			</div>
+			
+			<div id="content_right">
+				<h2 class="blue first">About.</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam congue risus ut est commodo semper. Cras ultrices eleifend sem sit amet semper eros.</p>
+				
+				<h2 class="blue">Flickr stream.</h2>
+				<div class="flickr_stream top"><a href="#"><img src="images/flickr_stream/image_1.jpg" alt="image 1" /></a></div>
+				<div class="flickr_stream top even"><a href="#"><img src="images/flickr_stream/image_2.jpg" alt="image 2" /></a></div>
+				<div class="flickr_stream top"><a href="#"><img src="images/flickr_stream/image_3.jpg" alt="image 3" /></a></div>
+				<div class="clear"></div>
+				<div class="flickr_stream"><a href="#"><img src="images/flickr_stream/image_4.jpg" alt="image 4" /></a></div>
+				<div class="flickr_stream even"><a href="#"><img src="images/flickr_stream/image_5.jpg" alt="image 5" /></a></div>
+				<div class="flickr_stream"><a href="#"><img src="images/flickr_stream/image_6.jpg" alt="image 6" /></a></div>
+				<div class="clear"></div>
+				
+				<h2 class="blue">Video widget.</h2>
+				<iframe src="http://player.vimeo.com/video/43332921?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="300" height="175" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				
+				<h2 class="blue">Twitter.</h2>
+				<div id="tweets_right"></div>
+				
+			</div>
+			<div class="clear"></div>
+			<div class="spacer_footer"></div>
+		</div>		
+	  
+	</div>
+	
+	<div id="footer">
+		<div id="inner_footer">
+			<div class="footer_col">
+				<h2 class="white">Twitter<span class="yellow">.</span></h2>
+				<div id="tweets_footer"></div>
+			</div>			
+			<div class="footer_col even">
+				<h2 class="white">Dribbble<span class="yellow">.</span></h2>
+				<div class="dribbble top"><a href="#"><img src="images/dribbble/image_1.jpg" alt="image 1" /></a></div>
+				<div class="dribbble top even"><a href="#"><img src="images/dribbble/image_2.jpg" alt="image 2" /></a></div>
+				<div class="dribbble top"><a href="#"><img src="images/dribbble/image_3.jpg" alt="image 3" /></a></div>
+				<div class="clear"></div>
+				<div class="dribbble"><a href="#"><img src="images/dribbble/image_4.jpg" alt="image 4" /></a></div>
+				<div class="dribbble even"><a href="#"><img src="images/dribbble/image_5.jpg" alt="image 5" /></a></div>
+				<div class="dribbble"><a href="#"><img src="images/dribbble/image_6.jpg" alt="image 6" /></a></div>
+				<div class="clear"></div>				
+			</div>				
+			<div class="footer_col">
+				<h2 class="white">Contact<span class="yellow">.</span></h2>
+				<p>Cras dolor aliquet euismod odio tortor viverra. Elit blandit praesent amet risus ligula nullam. Dignissim aliquam adipisci odio sed lorem.</p>
+				<p><br /><a href="mailto:hello@lovo.com">hello@lovo.com</a></p>
+			</div>
+			
+			<div id="footer_bottom">
+				<div id="logo_klein"><img src="images/logo_klein.png" alt="lovo logo klein" /></div>
+				<div id="copyright">&copy; 2012 <a href="#">Lovo</a>. Design by <a href="http://freshcreations.nl">FreshCreations</a></div>
+			</div>
+			
+		</div>
+	</div>
 
 
   <!-- Le javascript
@@ -145,12 +165,10 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
   <%= javascript_include_tag "front_page" %>
-  <%= yield :additional_js %>
-  
-  
-  
+  <%#= yield :additional_js %>
 </body>
 </html>
+
 
 
 

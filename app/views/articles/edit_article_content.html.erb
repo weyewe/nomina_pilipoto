@@ -22,7 +22,11 @@
     <div class="span10">
       <%= simple_form_for(@article, :url => update_article_content_url(@article), :html => {:class => 'form-horizontal' }) do |f| %>
         <%= f.input :title , :input_html => {:class => "input-xlarge span8"}, 
-        :hint => "Judul dari artikel ini."%>
+        :hint => "Judul dari artikel ini, e.g.: The Blossom Heart"%>
+        
+        <%= f.input :sub_title , :input_html => {:class => "input-xlarge span8"}, 
+        :hint => "Sub:Judul dari artikel ini. e.g.: Tika and Jimmy"%>
+        
         <%= f.input :teaser, :input_html => {:rows => 3, :class => "input-xlarge span8" },
         :hint => "Deskripsi singkat dari project yang dibahas di artikel ini"%>
 

@@ -27,9 +27,7 @@ class HomeController < ApplicationController
   
   
   def homepage
-    # render :layout => 'layouts/front_page'
-    
-    redirect_to select_project_for_collaboration_url
+    render :layout => 'layouts/front_page'
   end
   
   def article_list

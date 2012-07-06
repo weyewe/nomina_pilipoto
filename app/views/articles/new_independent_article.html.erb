@@ -1,8 +1,7 @@
 
 <div class="span9 content">
-  <%= create_guide("New Article", 
-        "Create the Article details: <b>title</b>, <b>teaser</b>, <b>description</b>. " + "<br />" + 
-        "<b>Manage</b> the existing independent articles").html_safe %>
+  <%= create_guide("Create Article", 
+        "Migrate from Finalized Project, or Create New Article").html_safe %>
   
   
   <% if not params[:notice].nil? %>
@@ -11,23 +10,34 @@
       <strong>Well done!</strong> <%= params[:notice].html_safe %>.
     </div>
   <% end %>
-  <%= create_breadcrumb(@breadcrumbs).html_safe %>
+  <%#= create_breadcrumb(@breadcrumbs).html_safe %>
+  <% if not params[:error].nil? %>
+    <div class="alert alert-error">
+       <%= params[:error].html_safe %>.
+    </div>
+  <% end %>
   
   
-  <div class="row-fluid" style="margin-bottom:30px;">
-    <button href="#" class="btn btn-success" 
-      id="trigger-independent-article-form">Add New Independent Article</button>
-  </div>
+  
+  
+  <%= render :partial => "articles/article_source_selector", :locals => {
+    :is_migrate_from_project => @is_migrate_from_project
+  }%>
+  
+  
   
   
   <div class="row-fluid" id="new_independent_article_wrapper" 
-        style="display:none; margin-bottom:30px; background-color: rgb(245,245,245); padding-top:10px;">
+        style=" margin-bottom:30px;  padding-top:10px;">
     <div class="span8">
    
       
       <%= simple_form_for(@new_article, :url => create_independent_article_url, :html => {:class => 'form-horizontal' }) do |f| %>
         <%= f.input :title , :input_html => {:class => "input-xlarge span8"}, 
         :hint => "Judul dari artikel ini."%>
+        
+        <%= f.input :sub_title , :input_html => {:class => "input-xlarge span8"}, 
+        :hint => "Sub-Judul dari artikel ini."%>
         <%= f.input :teaser, :input_html => {:rows => 3, :class => "input-xlarge span8" },
         :hint => "Deskripsi singkat dari project yang dibahas di artikel ini"%>
 
@@ -43,7 +53,31 @@
     </div><!--/span-->
 
     <div class="span4">
-    
+      <table cellpadding="0" cellspacing="0" border="0" 
+            class="table table-striped table-bordered" id="example">
+        <thead>
+          <tr>
+            <th>Article</th>
+            <!-- <th>Description</th> -->
+            <th colspan='3' style="text-align:center;">Publication Date</th> <!-- Change Title, Order Images, pull down-->
+          </tr>
+        </thead>
+        <tbody>
+          <% @articles.limit(10).each do |article| %>
+          <tr>
+            <td>
+              <%= article.title %>
+            </td>
+            <td>
+              today
+            </td>
+          </tr>
+          <% end %>
+          
+
+
+        </tbody>
+      </table>
     </div><!--/span-->
     
   </div><!--/row-->
@@ -57,7 +91,7 @@
         <thead>
           <tr>
             <th>Article Title</th>
-            <th>Description</th>
+            <!-- <th>Description</th> -->
             <th colspan='3' style="text-align:center;">Action</th> <!-- Change Title, Order Images, pull down-->
           </tr>
         </thead>

@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120528083707) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
+    t.string   "sub_title"
     t.text     "description"
     t.text     "teaser"
     t.integer  "project_id"

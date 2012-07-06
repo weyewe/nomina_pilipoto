@@ -3,7 +3,9 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  
- *= require front_page/style
- *= require front_page/supersized
+ *= require front_page/stylesheet
+ *= require front_page/anythingslider
+ *= require front_page/colorbox
+ *= require front_page/superfish
  *= require_self
 */

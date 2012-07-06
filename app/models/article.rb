@@ -9,6 +9,8 @@ class Article < ActiveRecord::Base
   belongs_to :company
   belongs_to :user 
   
+  validates_presence_of :title 
+  
   
   
   def ordered_article_pictures
