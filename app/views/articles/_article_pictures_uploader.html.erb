@@ -1,4 +1,7 @@
-<div class="row-fluid">
+
+<%= link_to "Upload Images", '#', :id => 'show_article_images_uploader', :class => "btn btn-success", :style => "margin-bottom:20px;"%> 
+
+<div class="row-fluid" id="article_image_uploader" style="display:none;">
 
     <button href="#" class="btn btn-info" id="loading_uploader_notification" style="margin-bottom:20px;">Loading Uploader...</button>
     
@@ -232,6 +235,8 @@
                // console.log("onSWF READY");
                // $("#file_upload").uploadify('disable', true);
                // $("#file_upload").uploadify("disable", false);
+               $("#loader_swf").fadeOut();
+               $("#loading_uploader_notification").fadeOut();
                $("#loader_swf").fadeOut();
              },
              

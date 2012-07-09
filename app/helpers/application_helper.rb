@@ -476,6 +476,10 @@ module ApplicationHelper
     if symbol == :student 
       return create_process_nav(STUDENT_PROCESS_LIST, params )
     end
+    
+    if symbol == :settings
+      return create_process_nav(SETTINGS_PROCESS_LIST, params )
+    end
   end
   
   
@@ -790,49 +794,49 @@ module ApplicationHelper
     :header_title => "Article Content Management",
     :processes => [
       
-      {
-        :title => "Publish Article from Project",
-        :destination_link => "select_project_to_create_article_url",
-        :conditions => [
-          {
-            :controller => 'projects',
-            :action => 'select_project_to_create_article'
-          },
-          {
-            :controller => "articles",
-            :action => 'edit_article_content'
-          },
-          {
-            :controller => "articles",
-            :action => "edit_image_ordering"
-          },
-          {
-            :controller => 'articles',
-            :action => 'edit_publication'
-          }
-        ]
-      },
+      # {
+      #     :title => "Publish Article from Project",
+      #     :destination_link => "select_project_to_create_article_url",
+      #     :conditions => [
+      #       {
+      #         :controller => 'projects',
+      #         :action => 'select_project_to_create_article'
+      #       },
+      #       {
+      #         :controller => "articles",
+      #         :action => 'edit_article_content'
+      #       },
+      #       {
+      #         :controller => "articles",
+      #         :action => "edit_image_ordering"
+      #       },
+      #       {
+      #         :controller => 'articles',
+      #         :action => 'edit_publication'
+      #       }
+      #     ]
+      #   },
       
-      {
-        :title => "Independent Article",
-        :destination_link => "new_independent_article_url",
-        :conditions => [
-          {
-            :controller =>'articles',
-            :action => ''
-          }
-        ]
-      },
-      {
-        :title => "All Articles",
-        :destination_link => "new_independent_article_url",
-        :conditions => [
-          {
-            :controller =>'',
-            :action => ''
-          }
-        ]
-      },
+      # {
+      #        :title => "Independent Article",
+      #        :destination_link => "new_independent_article_url",
+      #        :conditions => [
+      #          {
+      #            :controller =>'articles',
+      #            :action => ''
+      #          }
+      #        ]
+      #      },
+      # {
+      #     :title => "All Articles",
+      #     :destination_link => "new_independent_article_url",
+      #     :conditions => [
+      #       {
+      #         :controller =>'',
+      #         :action => ''
+      #       }
+      #     ]
+      #   },
       {
         :title => "Create Article",
         :destination_link => "new_article_url",
@@ -854,6 +858,18 @@ module ApplicationHelper
           {
             :controller =>'articles',
             :action => 'finalize_article'
+          },
+          {
+            :controller => "articles",
+            :action => 'edit_article_content'
+          },
+          {
+            :controller => "articles",
+            :action => "edit_image_ordering"
+          },
+          {
+            :controller => 'articles',
+            :action => 'edit_publication'
           }
         ]
       }
@@ -1093,5 +1109,23 @@ module ApplicationHelper
       }
     ]
   }
+  
+  SETTINGS_PROCESS_LIST = {
+    :header_title => "Settings",
+    :processes => [
+      {
+        :title => "Password",
+        :destination_link => 'edit_credential_url',
+        :conditions => [
+          {
+            :controller => "passwords",
+            :action => "edit_credential"
+          }
+        ]
+      }
+    ]
+  }
+  
+  
   
 end

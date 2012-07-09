@@ -478,21 +478,19 @@ $(document).ready(function() {
   Independent Article 
   */
   
-  $("#trigger-independent-article-form").click(function(){
+  $("#show_article_images_uploader").click(function(){
     var $trigger_button = $(this);
     
     if( $trigger_button.hasClass('btn-success') ){
-      $("#new_independent_article_wrapper").show();
+      $("#article_image_uploader").show();
       $trigger_button.removeClass('btn-success');
       $trigger_button.addClass('btn-danger');
-      $trigger_button.text("Cancel  New Independent Article Creation");
+      $trigger_button.text("Hide Uploader");
     }else if( $trigger_button.hasClass('btn-danger')  ){
-      $("#new_independent_article_wrapper").hide();
+      $("#article_image_uploader").hide();
       $trigger_button.removeClass('btn-danger');
       $trigger_button.addClass('btn-success');
-      $trigger_button.text("Add New Independent Article");
-      var $form = $("#new_independent_article_wrapper form");
-      $form.clearForm();
+      $trigger_button.text("Upload Images");
     }
     
     return false ;

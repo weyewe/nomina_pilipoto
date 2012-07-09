@@ -58,7 +58,7 @@ class ArticlesController < ApplicationController
   
   def finalize_article
     @articles = current_user.company_under_perspective.articles.order("created_at DESC")
-    add_breadcrumb "Create or Manage Independent Article", 'new_independent_article_path'
+    add_breadcrumb "Finalize Article", 'finalize_article_url'
   end
   
   def edit_independent_article_content
@@ -120,7 +120,7 @@ class ArticlesController < ApplicationController
   def edit_article_content
     edit_content_routine
     
-    add_breadcrumb "Select  project", 'select_project_to_create_article_path'
+    add_breadcrumb "Finalize Article", 'finalize_article_url'
     set_breadcrumb_for @article, 'edit_article_content_path' + "(#{@article.id})", 
           "Edit Content"
   end
@@ -141,7 +141,7 @@ class ArticlesController < ApplicationController
     edit_image_ordering_routine
     @new_article_picture = ArticlePicture.new 
     @independent_article_value = ARTICLE_FROM_PROJECT_VALUE
-    add_breadcrumb "Select  project", 'select_project_to_create_article_path'
+    add_breadcrumb "Finalize Article", 'finalize_article_url'
     set_breadcrumb_for @article, 'edit_image_ordering_path' + "(#{@article.id})", 
           "Edit Image Ordering"
   end
@@ -169,7 +169,7 @@ class ArticlesController < ApplicationController
    
     edit_publication_routine
     
-    add_breadcrumb "Select  project", 'select_project_to_create_article_path'
+    add_breadcrumb "Finalize Article", 'finalize_article_url'
     set_breadcrumb_for @article, 'edit_publication_path' + "(#{@article.id})", 
           "Edit Publication Date"
   end
