@@ -45,8 +45,64 @@ class ArticlePicturesController < ApplicationController
     end
   end
   
-
   
+  def create_article_picture_from_assembly
+    @article = Project.find_by_id( params[:article_id] )
+    assembly_url = params[:assembly_url]
+    # ensure_project_membership
+    
+    # @picture = Picture.create_from_assembly_url(assembly_url, @project)
+    @article_picture = ArticlePicture.create_from_assembly_url(assembly_url, @article)
+    
+    respond_to do |format| 
+      format.js do 
+        is_completed_result = 0 
+        if @article_picture.is_completed == true
+          is_completed_result= 1
+        end
+        render :json => {'picture_id' => @article_picture.id, 'is_completed' => is_completed_result}.to_json  
+      end
+    end
+  end
+  
+  
+  def transloadit_status_for_article_picture
+    # @picture = Picture.find_by_id( params[:picture_id])
+    array_of_assembled_pic_id = ArticlePicture.assembled_pic_id_from( params[:non_completed_pic_id_list].split(",").map{|x| x.to_i })
+      
+    
+    
+    respond_to do |format| 
+      format.js do 
+        # is_completed_result = 0 
+        # if @picture.is_completed == true
+        #   is_completed_result= 1
+        # end
+        render :json => array_of_assembled_pic_id.to_json  
+      end
+    end
+  end
+  
+
+
+  def show_article_picture_as_teaser
+    # "membership_provider"=>"4", "membership_consumer"=>"1", "membership_decision"=>"1"}
+    @decision = params[:membership_decision].to_i
+    @article = Article.find_by_id params[:membership_provider]
+    @article_picture = ArticlePicture.find_by_id params[:membership_consumer]
+    
+  
+    if @decision == TRUE_CHECK
+      @article_picture.show_as_teaser
+    elsif @decision == FALSE_CHECK
+      @article_picture.cancel_show_as_teaser
+    end
+    
+    respond_to do |format|
+      format.html {  redirect_to root_url }
+      format.js
+    end
+  end
   
 end
 

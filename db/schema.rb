@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120528083707) do
     t.boolean  "is_displayed_as_teaser",     :default => false
     t.boolean  "is_deleted",                 :default => false
     t.integer  "article_picture_type",       :default => 1
+    t.boolean  "is_completed",               :default => false
+    t.text     "assembly_url"
     t.integer  "width"
     t.integer  "height"
     t.datetime "created_at",                                    :null => false
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120528083707) do
     t.integer  "article_type",         :default => 1
     t.boolean  "has_front_page_image", :default => false
     t.integer  "article_category_id"
+    t.boolean  "is_deleted",           :default => false
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.boolean  "is_displayed",         :default => false
@@ -208,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20120528083707) do
     t.boolean  "is_private",           :default => false
     t.boolean  "is_locked",            :default => false
     t.integer  "company_id"
+    t.boolean  "is_deleted",           :default => false
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.boolean  "done_with_selection",  :default => false

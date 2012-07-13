@@ -20,17 +20,21 @@ class CreateArticlePictures < ActiveRecord::Migration
       # is it gonna be displayed@home_page? 
       t.boolean :is_displayed_at_front_page, :default => false 
       
-      # is this picture gonna be displayed in the teaser? 
+      # is this picture gonna be displayed in the teaser?  (teaser of the article)
       t.boolean :is_displayed_as_teaser, :default => false
       
       t.boolean  :is_deleted,           :default => false
       t.integer :article_picture_type, :default => ARTICLE_PICTURE_TYPE[:migrated_from_project]
       
+      t.boolean :is_completed , :default => false 
+      t.text :assembly_url 
       
       t.integer :width
       t.integer :height 
       
       t.integer :article_id 
+      
+    
 
       t.timestamps
     end

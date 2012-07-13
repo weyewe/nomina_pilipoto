@@ -368,26 +368,28 @@ class Project < ActiveRecord::Base
       article = Article.create :project_id => self.id , 
                       :company_id => self.company_id , 
                       :user_id => current_user.id ,
-                      :article_type => ARTICLE_TYPE[:mapped_from_project]
+                      :article_type => ARTICLE_TYPE[:mapped_from_project],
+                      :title => self.title 
       # wrong wrong
       #it should be the last approved pic
       self.selected_original_pictures.each do |pic|
-        last_revision = pic.last_revision
-        article.article_pictures.create(
-          :name                       => last_revision.name                        , 
-          :original_image_size        => last_revision.original_image_size         ,
-          :original_image_url         => last_revision.original_image_url          ,           
-          :index_image_url            => last_revision.index_image_url              ,
-          :index_image_size           => last_revision.index_image_size             ,
-                                         
-          :article_image_size         => last_revision.article_image_size           ,
-          :article_image_url          => last_revision.article_image_url            ,
-    # to check the front_page url and size : we observe the original pic
-          :width                      => last_revision.width                       ,
-          :height                     => last_revision.height                     
-        )
-      end
-      
+         last_revision = pic.last_revision
+         article_picture = article.article_pictures.create(
+           :name                       => last_revision.name                        , 
+           :original_image_size        => last_revision.original_image_size         ,
+           :original_image_url         => last_revision.original_image_url          ,           
+           :index_image_url            => last_revision.index_image_url              ,
+           :index_image_size           => last_revision.index_image_size             ,
+                                          
+           :article_image_size         => last_revision.article_image_size           ,
+           :article_image_url          => last_revision.article_image_url            ,
+     # to check the front_page url and size : we observe the original pic
+           :width                      => last_revision.width                       ,
+           :height                     => last_revision.height                     
+         )
+         article_picture.delay.resize_original_for_article
+       end
+       
       return article
     end
   end

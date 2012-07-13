@@ -4,5 +4,5 @@ auth:
   duration: 86400      # 30 minute validity period for signed upload forms
 
 templates:
-  neopilipoto_image_store : '6ff1923c56ef4eafa94b22c9cb4ac940'
-  neopilipoto_circle_front_page : 'bc00ef57cd624a93bc65043af29e391c'
+  neopilipoto_image_store : '2a2dc1a4cd7a4bf7a5d71b78a8e934a7'
+  neopilipoto_blog_image_store : '64f0ff4e20b546b4b5e1361e8c0e04f7'

@@ -1,0 +1,25 @@
+<tr id="article_picture_entry-<%= pic.id %>">
+  <td style="text-align:center;">
+    <%= image_tag pic.index_image_url %>
+  </td>
+  <td style="text-align:center;">
+    <% if pic.article_display_order <=  0 %>
+      <span class="label">Not Shown</span>
+    <% else %>
+      <span class="label label-success"><%= pic.article_display_order %></span> 
+    <% end %>
+  </td>
+  <td>
+    <%= text_field_tag "article_picture_#{pic.id}", "#{pic.article_display_order}" %>
+  </td>
+  <td class="well">
+    <label class="checkbox">
+      <% checkbox_value = pic.is_displayed_as_teaser? %>
+
+      <%= check_box_tag 'is_checked', get_checkbox_value(checkbox_value )   , 
+          checkbox_value, :class => 'checkbox_tracker', 
+          :id => "provider_#{article.id}-consumer_#{pic.id}" %> 
+    </label>
+
+  </td>
+</tr>

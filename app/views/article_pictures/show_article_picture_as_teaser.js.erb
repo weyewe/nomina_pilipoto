@@ -1,0 +1,10 @@
+<% new_row =  escape_javascript(render :partial => "article_pictures/article_pic_entry", 
+      :locals=> {:pic => @article_picture , 
+                :article => @article}) %> 
+              
+              
+$(document).ready(function(){
+  $("#article_picture_entry-<%= @article_picture.id %>").replaceWith('<%= new_row %>');
+});
+
+

@@ -7,6 +7,7 @@ class CreateArticles < ActiveRecord::Migration
       t.text :teaser 
       t.integer :project_id 
       
+      
       t.integer :company_id 
       t.integer :user_id 
       
@@ -15,6 +16,8 @@ class CreateArticles < ActiveRecord::Migration
       t.boolean :has_front_page_image, :default => false 
       
       t.integer :article_category_id 
+      
+      t.boolean :is_deleted , :default => false 
       t.timestamps
     end
   end

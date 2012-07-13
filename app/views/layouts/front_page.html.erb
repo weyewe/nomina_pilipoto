@@ -14,31 +14,36 @@
   <%= csrf_meta_tags %>
   
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="includes/js/jquery-ui-1.8.21.custom.min.js"></script>
-	<script type="text/javascript" src="includes/js/jquery.anythingslider.min.js"></script>
-	<script type="text/javascript" src="includes/js/jquery.colorbox-min.js"></script>
-	<script type="text/javascript" src="includes/js/twitter.js"></script>
-	<script type="text/javascript" src="includes/js/hoverIntent.js"></script>
-	<script type="text/javascript" src="includes/js/superfish.js"></script>	
-	<script type="text/javascript" src="includes/js/jquery.functions.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css" />
-	<link rel="stylesheet" type="text/css" href="includes/css/anythingslider.css" />
-	<link rel="stylesheet" type="text/css" href="includes/css/colorbox.css" />
-	<link rel="stylesheet" type="text/css" href="includes/css/superfish.css" />
+  <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="includes/js/jquery-ui-1.8.21.custom.min.js"></script>
+  <script type="text/javascript" src="includes/js/jquery.anythingslider.min.js"></script>
+  <script type="text/javascript" src="includes/js/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="includes/js/twitter.js"></script>
+  <script type="text/javascript" src="includes/js/hoverIntent.js"></script>
+  <script type="text/javascript" src="includes/js/superfish.js"></script> 
+  <script type="text/javascript" src="includes/js/jquery.functions.js"></script>
+   -->
+  <!-- <link rel="stylesheet" type="text/css" href="includes/css/stylesheet.css" />
+  <link rel="stylesheet" type="text/css" href="includes/css/anythingslider.css" />
+  <link rel="stylesheet" type="text/css" href="includes/css/colorbox.css" />
+  <link rel="stylesheet" type="text/css" href="includes/css/superfish.css" /> -->
 	
 </head>
 <body>
 	
-	<div id="box">
-		<div id="inner_box">Hey! We've put this bar here so you can put some awesome cool stunning great message!</div>
-		<div id="box_close">x close</div>		
-	</div>
+  <!-- <div id="box">
+    <div id="inner_box">Hey! We've put this bar here so you can put some awesome cool stunning great message!</div>
+    <div id="box_close">x close</div>   
+  </div> -->
 
 	<div id="header">
 		<div id="inner_header">
-			<div id="logo"><a href="index.php"><img src="images/logo.png" alt="lovo logo" /></a></div>
+			<div id="logo">
+			  <a href="index.php">
+          <!-- <img src="images/logo.png" alt="lovo logo" /> -->
+			    <%#= image_tag 'front_page/logo.png' %>
+			  </a>
+			</div>
 			<div id="menu">
 				<ul class="sf-menu">
 					<li class="current active parent">
@@ -47,25 +52,27 @@
 					<li class="parent">
 						<a href="portfolio.php">Portfolio</a>
 					</li>
+		      <!-- <li class="parent">
+		            <a href="#">Drops</a>
+		            <ul>
+		              <li>
+		                <a href="portfolio_case.php">Portfolio case</a>
+		              </li>             
+		              <li>
+		                <a href="blog.php">Blog</a>
+		              </li>             
+		              <li>
+		                <a href="blog_comment.php">Blog comment</a>
+		              </li>
+		            </ul>   
+		          </li> -->
+					
+			    <!-- <li class="parent">
+			           <a href="contact.php">Contact</a>
+			         </li> -->
+					
 					<li class="parent">
-						<a href="#">Drops</a>
-						<ul>
-							<li>
-								<a href="portfolio_case.php">Portfolio case</a>
-							</li>							
-							<li>
-								<a href="blog.php">Blog</a>
-							</li>							
-							<li>
-								<a href="blog_comment.php">Blog comment</a>
-							</li>
-						</ul>		
-					</li>
-					<li class="parent">
-						<a href="blog.php">Blog</a>
-					</li>				
-					<li class="parent">
-						<a href="contact.php">Contact</a>
+						<a href="blog.php">Client Login</a>
 					</li>
 				</ul>
 			</div>
@@ -75,57 +82,55 @@
 	<div id="wrapper">
 				
 		<div id="blue">
-			<h1>Recent work.</h1>
+			<h1>Nomina Pics.</h1>
 			<span id="contact_label">E: contact@nominaPics.com | T: +62.821.688.88.660</span>
 			
 			<%= render :partial => 'layouts/front_page/slider/slider' %>
 		</div>
 		
 		<div id="content">
-			<div id="content_left">
-				<h2>Latest blogs.</h2>
-				<img src="images/latest_blogs/article_1.jpg" alt="article 1" />
-				<h2 class="noborder">The Legend of Zelda.</h2>
-				<p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
-				<p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>			
-				<div class="readmore black"><a href="#">Read more</a></div>
+			<div id="content_left" style="width:100%;">
+        <h2></h2>
 				
-				<div class="spacer"></div>
 				
-				<h2>News.</h2>
-				<img src="images/news/image_1.jpg" alt="image 1" />
-				<h2 class="noborder">Good misha magazine.</h2>
-				<p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
-				<p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>			
-				<div class="readmore yellow"><a href="#">Read more</a></div>		
+				<% @articles.each do |article| %>
+				  <%= render :partial => "layouts/front_page/article_entry", :locals => {
+				    :article => article 
+				  } %>
+				<% end %>
 				
+				
+				
+				
+			  <!-- <h2 class="noborder" style="text-align:center;">Two Becomes One</h2>
+			       <%= image_tag 'front_page_static/image_2.jpg', :style => "margin:0 auto; display:block;"
+			       %>
+			       
+			       <div style="width:700px; margin:0 auto; font-family: Verdana, Helvetica,Arial,default; margin-top:20px;">
+			         <p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
+			         <p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>     
+			         <div class="readmore black" ><a href="#">Read more</a></div>
+			       </div>
+			       <div class="spacer"></div>
+			        -->
+				
+				
+	      <!-- <h2 class="noborder" style="text-align:center;">Reza & Dewi Prewedding</h2>
+	       <%= image_tag 'front_page_static/image_3.jpg', :style => "margin:0 auto; display:block;"
+	       %>
+	       
+	       <div style="width:700px; margin:0 auto; font-family: Verdana, Helvetica,Arial,default; margin-top:20px;">
+	         <p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
+	         <p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>     
+	         <div class="readmore black" ><a href="#">Read more</a></div>
+	       </div>
+	       <div class="spacer"></div> -->
 			</div>
-			
-			<div id="content_right">
-				<h2 class="blue first">About.</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam congue risus ut est commodo semper. Cras ultrices eleifend sem sit amet semper eros.</p>
-				
-				<h2 class="blue">Flickr stream.</h2>
-				<div class="flickr_stream top"><a href="#"><img src="images/flickr_stream/image_1.jpg" alt="image 1" /></a></div>
-				<div class="flickr_stream top even"><a href="#"><img src="images/flickr_stream/image_2.jpg" alt="image 2" /></a></div>
-				<div class="flickr_stream top"><a href="#"><img src="images/flickr_stream/image_3.jpg" alt="image 3" /></a></div>
-				<div class="clear"></div>
-				<div class="flickr_stream"><a href="#"><img src="images/flickr_stream/image_4.jpg" alt="image 4" /></a></div>
-				<div class="flickr_stream even"><a href="#"><img src="images/flickr_stream/image_5.jpg" alt="image 5" /></a></div>
-				<div class="flickr_stream"><a href="#"><img src="images/flickr_stream/image_6.jpg" alt="image 6" /></a></div>
-				<div class="clear"></div>
-				
-				<h2 class="blue">Video widget.</h2>
-				<iframe src="http://player.vimeo.com/video/43332921?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="300" height="175" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-				
-				<h2 class="blue">Twitter.</h2>
-				<div id="tweets_right"></div>
-				
-			</div>
+		
 			<div class="clear"></div>
 			<div class="spacer_footer"></div>
 		</div>		
-	  
+    
 	</div>
 	
 	<div id="footer">

@@ -39,25 +39,17 @@
               <th style="text-align:center;">
                 Edit Ordering
               </th>
+              <th style="text-align:center;">
+                Teaser?
+              </th>
             </tr>
           </thead>
           <tbody>
             <% @article_pictures.each do |pic| %>
-              <tr>
-                <td style="text-align:center;">
-                  <%= image_tag pic.index_image_url %>
-                </td>
-                <td style="text-align:center;">
-                  <% if pic.article_display_order <=  0 %>
-                    <span class="label">Not Shown</span>
-                  <% else %>
-                    <span class="label label-success"><%= pic.article_display_order %></span> 
-                  <% end %>
-                </td>
-                <td>
-                  <%= text_field_tag "article_picture_#{pic.id}", "#{pic.article_display_order}" %>
-                </td>
-              </tr>
+              <%= render :partial => 'article_pictures/article_pic_entry', :locals => {
+                :pic => pic, 
+                :article => @article
+              }%>
             <% end %>
           
           </tbody>
@@ -76,3 +68,12 @@
   </div><!--/row-->
 
 </div><!--/span-->
+
+
+<div class=" hidden" id="checkbox_form_wrapper">
+  <%= form_for ArticlePicture.new, :url =>show_article_picture_as_teaser_url, :method => :post    do |f| %>
+    <%= hidden_field_tag 'membership_provider' , ''  %>
+    <%= hidden_field_tag 'membership_consumer', '' %>
+    <%= hidden_field_tag 'membership_decision', '' %>
+  <% end %>
+</div>

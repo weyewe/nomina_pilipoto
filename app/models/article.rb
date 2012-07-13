@@ -11,12 +11,35 @@ class Article < ActiveRecord::Base
   
   validates_presence_of :title 
   
+  before_destroy :destroy_all_article_pics
+  
+  def self.frontpage_article
+    Article.includes(:article_pictures).find(:all, 
+      :conditions => [ "publication_datetime <= ?", DateTime.now ], 
+      :order => "publication_datetime DESC")
+  end
+  
+  def frontpage_article_pictures
+    ArticlePicture.where(:is_deleted => false, :article_id => self.id, 
+      :is_displayed_as_teaser => true ).order("article_display_order ASC")
+  end
+  
+  
+  def destroy_all_article_pics
+    self.article_pictures.each do |article_pic|
+      
+      article_pic.is_deleted = true
+      article_pic.save 
+    end
+  end
+  
   
   
   def ordered_article_pictures
     ArticlePicture.find(:all, :conditions => {
-      :article_id => self.id
-    }, :order => "article_display_order ASC, created_at ASC")
+      :article_id => self.id,
+      :is_deleted => false 
+    }, :order => "article_display_order ASC, name ASC")
     
     
   end

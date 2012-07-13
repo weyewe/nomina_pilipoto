@@ -50,6 +50,11 @@ Neopilipoto::Application.routes.draw do
   match 'update_image_ordering/:article_id/:independent_article_value' => 'articles#update_image_ordering', :as => :update_image_ordering
   
   
+  match 'create_article_picture_from_assembly/:article_id' => "article_pictures#create_article_picture_from_assembly", :as => :create_article_picture_from_assembly, :method => :post
+  match 'transloadit_status_for_article_picture' => "article_pictures#transloadit_status_for_article_picture", :as => :transloadit_status_for_article_picture, :method => :post
+  match 'show_article_picture_as_teaser' => 'article_pictures#show_article_picture_as_teaser', :as => :show_article_picture_as_teaser , :method => :post 
+  
+  
   match 'edit_publication/:article_id' => 'articles#edit_publication', :as => :edit_publication
   match 'update_publication/:article_id' => "articles#update_publication", :as => :update_publication , :method => :post
   

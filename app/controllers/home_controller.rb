@@ -27,6 +27,10 @@ class HomeController < ApplicationController
   
   
   def homepage
+    
+    # all(:conditions=> ["created_at >= ? ", Time.now.beginning_of_day])
+    @articles = Article.frontpage_article
+    
     render :layout => 'layouts/front_page'
   end
   

@@ -30,7 +30,7 @@
             <%#= hidden_field_tag 'from_project_owner', 
             1  %>
             <%#= transloadit :neopilipoto_image_store %>
-            <% tranloadit_array = transloadit_with_max_size('neopilipoto_image_store', 100) %>
+            <% tranloadit_array = transloadit_with_max_size('neopilipoto_blog_image_store', 100) %>
             <%= hidden_field_tag 'params',  tranloadit_array[0]  %>
             <%= hidden_field_tag 'signature',  tranloadit_array[1]  %>
             <%= hidden_field_tag 'wait',  true   %>
@@ -126,7 +126,7 @@
             
             
             $.ajax({
-              url: '<%#= transloadit_status_for_picture_url %>',
+              url: '<%= transloadit_status_for_article_picture_url %>',
               type: "POST",
               data: non_completed_pic_id_list,
               dataType: 'json',
@@ -308,7 +308,7 @@
                // poll that assembly_url 
                // console.log("Gonna create pseudo picture file");
                $.ajax({
-                 url: '<%#= create_picture_from_assembly_url(@project)%>',
+                 url: '<%= create_article_picture_from_assembly_url(@article)%>',
                  type: "POST",
                  data: {
                    'assembly_url' : parsedData["assembly_url"]

@@ -11,6 +11,8 @@ class CreateProjects < ActiveRecord::Migration
       
       t.integer :company_id 
       
+      t.boolean :is_deleted, :default => false 
+      
       t.timestamps
     end
   end
