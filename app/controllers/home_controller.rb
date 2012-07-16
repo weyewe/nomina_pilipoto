@@ -36,7 +36,7 @@ class HomeController < ApplicationController
   end
   
   def portfolio
-    
+    @latest_articles = Article.frontpage_article
     render :layout => 'layouts/front_page'
   end
   

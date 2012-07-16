@@ -34,6 +34,7 @@ Neopilipoto::Application.routes.draw do
   
   
   match 'blog/:article_id' => 'home#blog', :as => :blog
+  match 'portfolio' => 'home#portfolio', :as => :portfolio
 =begin
   creating article from project 
 =end
