@@ -30,6 +30,9 @@
 		</div>
 	
 		<div class="clear"></div>
+		<%= paginate @articles, :params => {:controller => 'home', :action => 'homepage'} %>
+		
+		
 		<div class="spacer_footer"></div>
 	</div>		
   

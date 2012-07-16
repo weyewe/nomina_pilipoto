@@ -29,8 +29,11 @@ class HomeController < ApplicationController
   def homepage
     
     # all(:conditions=> ["created_at >= ? ", Time.now.beginning_of_day])
-    @articles = Article.frontpage_article
+    # @articles = Article.frontpage_article
     @latest_articles = Article.frontpage_article
+    
+    @articles  = Kaminari.paginate_array(Article.frontpage_article).page(params[:page]).per(3)
+    
     
     render :layout => 'layouts/front_page'
   end
