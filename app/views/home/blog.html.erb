@@ -1,0 +1,48 @@
+<div id="wrapper">
+			
+  <div id="blue">
+    <h1>Nomina Pics.</h1>
+    <span id="contact_label">E: contact@nominaPics.com | T: +62.821.688.88.660</span>
+    
+    <%#= render :partial => 'layouts/front_page/slider/slider', :locals => {
+      :latest_articles => @latest_articles
+    } %>
+    
+    <%#= render :partial => 'layouts/front_page/slider/slider_mod', :locals => {
+      :latest_articles => @latest_articles
+    } %>
+  </div>
+	
+	<div id="content">
+		<div id="content_left" style="width:100%;">
+      <h2></h2>
+			
+			<h2 class="noborder" style="text-align:center;"><%= @article.title %></h2>
+      <!-- <img src="images/latest_blogs/article_1.jpg" alt="article 1" style="margin:0 auto; display:block;"  /> -->
+        <% @article.ordered_blog_article_pictures.each do |pic| %>
+          <p>
+          <%= image_tag  pic.article_image_url ,
+            :style => "margin:0 auto; display:block;" %>
+          </p>
+        <% end %>
+
+
+      <div style="width:700px; margin:0 auto; font-family: Verdana, Helvetica,Arial,default; margin-top:20px;">
+        
+        <div><%= @article.description.html_safe %></div>	
+        <!-- <div class="readmore black" ><a href="#">Read more</a></div> -->
+      </div>
+      <div class="spacer"></div>
+      
+			
+		
+			
+			
+			
+		</div>
+	
+		<div class="clear"></div>
+		<div class="spacer_footer"></div>
+	</div>		
+  
+</div>

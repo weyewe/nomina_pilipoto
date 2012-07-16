@@ -47,7 +47,8 @@
 			<div id="menu">
 				<ul class="sf-menu">
 					<li class="current active parent">
-						<a class="active" href="index.php">Home</a>
+					  <%= link_to "Home", root_url %>
+            <!-- <a class="active" href="index.php">Home</a> -->
 					</li>
 					<li class="parent">
 						<a href="portfolio.php">Portfolio</a>
@@ -72,93 +73,39 @@
 			         </li> -->
 					
 					<li class="parent">
-						<a href="blog.php">Client Login</a>
+					  <%= link_to "Client Login", new_user_session_url %>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
-	<div id="wrapper">
-				
-		<div id="blue">
-			<h1>Nomina Pics.</h1>
-			<span id="contact_label">E: contact@nominaPics.com | T: +62.821.688.88.660</span>
-			
-			<%= render :partial => 'layouts/front_page/slider/slider' %>
-		</div>
-		
-		<div id="content">
-			<div id="content_left" style="width:100%;">
-        <h2></h2>
-				
-				
-				<% @articles.each do |article| %>
-				  <%= render :partial => "layouts/front_page/article_entry", :locals => {
-				    :article => article 
-				  } %>
-				<% end %>
-				
-				
-				
-				
-			  <!-- <h2 class="noborder" style="text-align:center;">Two Becomes One</h2>
-			       <%= image_tag 'front_page_static/image_2.jpg', :style => "margin:0 auto; display:block;"
-			       %>
-			       
-			       <div style="width:700px; margin:0 auto; font-family: Verdana, Helvetica,Arial,default; margin-top:20px;">
-			         <p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
-			         <p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>     
-			         <div class="readmore black" ><a href="#">Read more</a></div>
-			       </div>
-			       <div class="spacer"></div>
-			        -->
-				
-				
-	      <!-- <h2 class="noborder" style="text-align:center;">Reza & Dewi Prewedding</h2>
-	       <%= image_tag 'front_page_static/image_3.jpg', :style => "margin:0 auto; display:block;"
-	       %>
-	       
-	       <div style="width:700px; margin:0 auto; font-family: Verdana, Helvetica,Arial,default; margin-top:20px;">
-	         <p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
-	         <p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>     
-	         <div class="readmore black" ><a href="#">Read more</a></div>
-	       </div>
-	       <div class="spacer"></div> -->
-			</div>
-		
-			<div class="clear"></div>
-			<div class="spacer_footer"></div>
-		</div>		
-    
-	</div>
+	<%= yield %>
+	
 	
 	<div id="footer">
 		<div id="inner_footer">
-			<div class="footer_col">
-				<h2 class="white">Twitter<span class="yellow">.</span></h2>
-				<div id="tweets_footer"></div>
-			</div>			
-			<div class="footer_col even">
-				<h2 class="white">Dribbble<span class="yellow">.</span></h2>
-				<div class="dribbble top"><a href="#"><img src="images/dribbble/image_1.jpg" alt="image 1" /></a></div>
-				<div class="dribbble top even"><a href="#"><img src="images/dribbble/image_2.jpg" alt="image 2" /></a></div>
-				<div class="dribbble top"><a href="#"><img src="images/dribbble/image_3.jpg" alt="image 3" /></a></div>
-				<div class="clear"></div>
-				<div class="dribbble"><a href="#"><img src="images/dribbble/image_4.jpg" alt="image 4" /></a></div>
-				<div class="dribbble even"><a href="#"><img src="images/dribbble/image_5.jpg" alt="image 5" /></a></div>
-				<div class="dribbble"><a href="#"><img src="images/dribbble/image_6.jpg" alt="image 6" /></a></div>
-				<div class="clear"></div>				
-			</div>				
-			<div class="footer_col">
-				<h2 class="white">Contact<span class="yellow">.</span></h2>
-				<p>Cras dolor aliquet euismod odio tortor viverra. Elit blandit praesent amet risus ligula nullam. Dignissim aliquam adipisci odio sed lorem.</p>
-				<p><br /><a href="mailto:hello@lovo.com">hello@lovo.com</a></p>
-			</div>
+	    <!-- <div class="footer_col">
+	       <h2 class="white"><span class="yellow">.</span></h2>
+	       
+	     </div>      
+	     <div class="footer_col even">
+	        <h2 class="white"><span class="yellow">.</span></h2>
+	       
+	       <div class="clear"></div>       
+	     </div>        
+	     <div class="footer_col">
+	       <h2 class="white">Contact<span class="yellow">.</span></h2>
+	       <p>Cras dolor aliquet euismod odio tortor viverra. Elit blandit praesent amet risus ligula nullam. Dignissim aliquam adipisci odio sed lorem.</p>
+	       <p><br /><a href="mailto:hello@lovo.com">hello@lovo.com</a></p>
+	     </div> -->
 			
 			<div id="footer_bottom">
-				<div id="logo_klein"><img src="images/logo_klein.png" alt="lovo logo klein" /></div>
-				<div id="copyright">&copy; 2012 <a href="#">Lovo</a>. Design by <a href="http://freshcreations.nl">FreshCreations</a></div>
+				<div id="logo_klein">
+          <!-- <img src="images/logo_klein.png" alt="lovo logo klein" /> -->
+				</div>
+				<div id="copyright">&copy; 2012 <a href="#">Nomina Pics</a> <!-- Design by <a href="http://freshcreations.nl">FreshCreations</a> -->
+				</div>
 			</div>
 			
 		</div>

@@ -47,7 +47,7 @@ class ArticlePicturesController < ApplicationController
   
   
   def create_article_picture_from_assembly
-    @article = Project.find_by_id( params[:article_id] )
+    @article = Article.find_by_id( params[:article_id] )
     assembly_url = params[:assembly_url]
     # ensure_project_membership
     

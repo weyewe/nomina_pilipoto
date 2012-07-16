@@ -29,7 +29,7 @@
   
   <div class="row-fluid" id="new_independent_article_wrapper" 
         style=" margin-bottom:30px;  padding-top:10px;">
-    <div class="span8">
+    <div class="span12">
    
       
       <%= simple_form_for(@new_article, :url => create_independent_article_url, :html => {:class => 'form-horizontal' }) do |f| %>
@@ -38,7 +38,7 @@
         
         <%= f.input :sub_title , :input_html => {:class => "input-xlarge span8"}, 
         :hint => "Sub-Judul dari artikel ini."%>
-        <%= f.input :teaser, :input_html => {:rows => 3, :class => "input-xlarge span8" },
+        <%= f.input :teaser, :input_html => {:rows => 5, :columns => 20, :class => "input-xlarge span10" },
         :hint => "Deskripsi singkat dari project yang dibahas di artikel ini"%>
 
         <%= f.input :description , :input_html => {:rows => 5, :columns=>20, :class => "input-xlarge span10"}, 
@@ -52,64 +52,27 @@
       
     </div><!--/span-->
 
-    <div class="span4">
-      <table cellpadding="0" cellspacing="0" border="0" 
-            class="table table-striped table-bordered" id="example">
-        <thead>
-          <tr>
-            <th>Article</th>
-            <!-- <th>Description</th> -->
-            <th colspan='3' style="text-align:center;">Publication Date</th> <!-- Change Title, Order Images, pull down-->
-          </tr>
-        </thead>
-        <tbody>
-          <% @articles.limit(10).each do |article| %>
-          <tr>
-            <td>
-              <%= article.title %>
-            </td>
-            <td>
-              today
-            </td>
-          </tr>
-          <% end %>
-          
-
-
-        </tbody>
-      </table>
-    </div><!--/span-->
+   
     
   </div><!--/row-->
-  
-  
-  <div class="row-fluid">
-    <div class="span12">
-      
-      <table cellpadding="0" cellspacing="0" border="0" 
-            class="table table-striped table-bordered" id="example">
-        <thead>
-          <tr>
-            <th>Article Title</th>
-            <!-- <th>Description</th> -->
-            <th colspan='3' style="text-align:center;">Action</th> <!-- Change Title, Order Images, pull down-->
-          </tr>
-        </thead>
-        <tbody>
-          <% @articles.each do |article| %>
-            <%= render :partial =>"articles/independent_article", :locals => {
-              :article => article
-            }%>
-          <% end %>
-          
-
-
-        </tbody>
-      </table>
-    </div>
-
-  </div><!--/row-->
-   
-   
-
 </div><!--/span-->
+
+<% content_for :additional_js do %>
+  <%= javascript_include_tag "wysihtml5-0.3.0_rc2.min", "bootstrap-wysihtml5-0.0.2.min" %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#article_teaser, #article_description').wysihtml5({
+      	"html": false, //Button which allows you to edit the generated HTML. Default false
+      	"image": false //Button to insert an image. Default true
+      });
+      
+      
+    });
+  </script>
+<% end %>
+
+<% content_for :additional_css do %>
+  <%= stylesheet_link_tag "bootstrap-wysihtml5-0.0.2" %>
+<% end %>
+
+

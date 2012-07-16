@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  # skip_before_filter :authenticate_user!, :only => [:homepage, :article_list ]
+  skip_before_filter :authenticate_user!, :only => [:homepage , :blog]
   skip_filter :authenticate_user!, :only => [ :raise_exception]
   
   def raise_exception  
@@ -30,9 +30,21 @@ class HomeController < ApplicationController
     
     # all(:conditions=> ["created_at >= ? ", Time.now.beginning_of_day])
     @articles = Article.frontpage_article
+    @latest_articles = Article.frontpage_article
     
     render :layout => 'layouts/front_page'
   end
+  
+  def portfolio
+    
+    render :layout => 'layouts/front_page'
+  end
+  
+  def blog
+    @article  = Article.find_by_id params[:article_id]
+    render :layout => 'layouts/front_page'
+  end
+  
   
   def article_list
     render :layout => 'layouts/front_page'

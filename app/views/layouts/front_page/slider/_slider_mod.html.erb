@@ -1,0 +1,44 @@
+<ul id="slider">
+  
+	<li class="slide1">
+		<!-- item 1 -->
+		<% counter = 1 %>
+		<% latest_articles[0..5].each do |article| %>
+		  <% if counter%3 == 2 %>
+		    <% center_marker = 'even' %>
+		  <% else %>
+		    <% center_marker = '' %>
+		  <% end %>
+		  
+		  <% if counter <= 3 %>
+		    <% top_marker = 'top' %>
+		  <% else %>
+		    <% top_marker = '' %>
+		  <% end %>
+		
+  		<div class="recent_work <%= center_marker %>  <%= top_marker%>">
+  			<a href="images/recent_work/image_1.jpg">
+  			  <% if not article.frontpage_article_pictures.first.nil? %>
+  			  <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
+  			  <% end %>
+  			
+          <!-- <img src="images/recent_work/image_1.jpg" alt="image 1" /> -->
+  			  </a>
+  			<div class="recent_work_overlay">
+  				<div class="title"><%= article.title %></div>
+          <!-- <div class="credits">Credits Craig Stanford</div> -->
+  			</div>
+  		</div>
+  		<% if counter%3 == 0 %>
+  		  <div class="clear"></div>
+  		<% end %>
+  		
+  		
+		  <% counter += 1 %>
+		<% end %>
+		
+		
+	</li>				
+	
+
+</ul>

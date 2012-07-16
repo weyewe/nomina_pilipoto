@@ -1,14 +1,19 @@
-<h2 class="noborder" style="text-align:center;"><%= article.title %></h2>
+<h2 class="noborder" style="text-align:center;">
+  <%= link_to  article.title , blog_url(article), :style => "text-decoration:none; color:#000000" %>
+</h2>
 <!-- <img src="images/latest_blogs/article_1.jpg" alt="article 1" style="margin:0 auto; display:block;"  /> -->
   <% article.frontpage_article_pictures.each do |pic| %>
+    <p>
     <%= image_tag  pic.article_image_url ,
       :style => "margin:0 auto; display:block;" %>
+    </p>
   <% end %>
 
 
 <div style="width:700px; margin:0 auto; font-family: Verdana, Helvetica,Arial,default; margin-top:20px;">
-  <p>Here is my contribution to the Fill Up Your Hearts blog. My parents gave my older brother a Nintendo for Christmas of '86 (i think) and from then on we were hooked. We only had a few games starting out and this was one of them and it's still one of my favorite games.</p>
-	<p>Be sure to check out all the other awesome contributions to the Fill Up Your Heart blog!</p>			
-	<div class="readmore black" ><a href="#">Read more</a></div>
+  <div style="margin-bottom:20px;">
+  <%= article.teaser.html_safe %>	
+  </div>
+	<div class="readmore black" ><%= link_to "Read More", blog_url(article)%> </div>
 </div>
 <div class="spacer"></div>

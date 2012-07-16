@@ -51,7 +51,8 @@ Neopilipoto::Application.configure do
                           jquery.Jcrop.min.js 
                           phototagging_exe.js jcrop.css image_map.css 
                           bootstrap_email.css 
-                          jquery.fancybox-thumbs.js jquery.fancybox-thumbs.css )
+                          jquery.fancybox-thumbs.js jquery.fancybox-thumbs.css
+                          wysihtml5-0.3.0_rc2.min.js bootstrap-wysihtml5-0.0.2.min.js  bootstrap-wysihtml5-0.0.2.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

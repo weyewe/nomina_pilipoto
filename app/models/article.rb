@@ -39,9 +39,18 @@ class Article < ActiveRecord::Base
     ArticlePicture.find(:all, :conditions => {
       :article_id => self.id,
       :is_deleted => false 
-    }, :order => "article_display_order ASC, name ASC")
+    }, :order => "article_display_order ASC")
     
     
+  end
+  
+  def ordered_blog_article_pictures
+    self_article_id  = self.id 
+    ArticlePicture.where{
+      (article_id.eq self_article_id )  & 
+      (is_deleted.eq false) & 
+      (article_display_order.gt 0)
+    }.order("article_display_order ASC")
   end
   
   
