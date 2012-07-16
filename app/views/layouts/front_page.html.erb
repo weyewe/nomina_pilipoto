@@ -11,6 +11,7 @@
 
   <%= stylesheet_link_tag    "front_page", :media => "all" %>
   <%#= javascript_include_tag "application" %>
+  <%= yield :additional_css %>
   <%= csrf_meta_tags %>
   
 
@@ -117,7 +118,7 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
   <%= javascript_include_tag "front_page" %>
-  <%#= yield :additional_js %>
+  <%= yield :additional_js %>
 </body>
 </html>
 
