@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  skip_before_filter :authenticate_user!, :only => [:homepage , :blog]
+  skip_before_filter :authenticate_user!, :only => [:homepage , :blog, :portfolio]
   skip_filter :authenticate_user!, :only => [ :raise_exception]
   
   def raise_exception  
