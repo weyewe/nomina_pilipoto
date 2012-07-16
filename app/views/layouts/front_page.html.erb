@@ -47,11 +47,11 @@
 			</div>
 			<div id="menu">
 				<ul class="sf-menu">
-					<li class="current active parent">
+					<li class="<%= menu_item_class(:home, params) %> parent">
 					  <%= link_to "Home", root_url %>
             <!-- <a class="active" href="index.php">Home</a> -->
 					</li>
-					<li class="parent">
+					<li class="<%= menu_item_class(:portfolio, params) %> parent">
 					  <%= link_to "Portfolio", portfolio_url %>
 					</li>
 		      <!-- <li class="parent">

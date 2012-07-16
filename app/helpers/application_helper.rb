@@ -5,6 +5,20 @@ module ApplicationHelper
   PREV_BUTTON_TEXT = " &larr; Prev "
   
   
+=begin
+  Front Page helper 
+=end
+  def menu_item_class(menu_symbol, params)
+    if menu_symbol == :home
+      if params[:action] == "homepage" or params[:action] == "blog"
+        return "active"
+      end
+    elsif menu_symbol == :portfolio
+      if params[:action] == "portfolio"
+        return "active"
+      end
+    end
+  end
   
 =begin
   Our version of transloadit 
