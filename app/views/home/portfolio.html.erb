@@ -23,13 +23,18 @@
     		  <% end %>
 
       		<div class="recent_work <%= center_marker %>  <%= top_marker%>">
-      			<a href="images/recent_work/image_1.jpg">
-      			  <% if not article.frontpage_article_pictures.first.nil? %>
-      			  <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
-      			  <% end %>
+      		  
+      		  <% if not article.frontpage_article_pictures.first.nil? %>
 
-              <!-- <img src="images/recent_work/image_1.jpg" alt="image 1" /> -->
-      			  </a>
+      		    <%= link_to article.frontpage_article_pictures.first.article_image_url do %>
+      		      <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
+      		    <% end %>
+
+      		  <% else %>
+      		    <a href="images/recent_work/image_1.jpg"></a>
+      		  <% end %>
+      		  
+      		  
       			<div class="recent_work_overlay">
       				<div class="title"><%= article.title %></div>
               <!-- <div class="credits">Credits Craig Stanford</div> -->
@@ -42,8 +47,11 @@
 
     		  <% counter += 1 %>
     		<% end %>
-
-
+    		
+    		
+    		
+    		
+    		<!-- item 1 -->
     		<% counter = 1 %>
     		<% @latest_articles[0..5].each do |article| %>
     		  <% if counter%3 == 2 %>
@@ -59,13 +67,18 @@
     		  <% end %>
 
       		<div class="recent_work <%= center_marker %>  <%= top_marker%>">
-      			<a href="images/recent_work/image_1.jpg">
-      			  <% if not article.frontpage_article_pictures.first.nil? %>
-      			  <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
-      			  <% end %>
+      		  
+      		  <% if not article.frontpage_article_pictures.first.nil? %>
 
-              <!-- <img src="images/recent_work/image_1.jpg" alt="image 1" /> -->
-      			  </a>
+      		    <%= link_to article.frontpage_article_pictures.first.article_image_url do %>
+      		      <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
+      		    <% end %>
+
+      		  <% else %>
+      		    <a href="images/recent_work/image_1.jpg"></a>
+      		  <% end %>
+      		  
+      		  
       			<div class="recent_work_overlay">
       				<div class="title"><%= article.title %></div>
               <!-- <div class="credits">Credits Craig Stanford</div> -->
@@ -78,8 +91,14 @@
 
     		  <% counter += 1 %>
     		<% end %>
-
-
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		<!-- item 1 -->
     		<% counter = 1 %>
     		<% @latest_articles[0..5].each do |article| %>
     		  <% if counter%3 == 2 %>
@@ -95,13 +114,18 @@
     		  <% end %>
 
       		<div class="recent_work <%= center_marker %>  <%= top_marker%>">
-      			<a href="images/recent_work/image_1.jpg">
-      			  <% if not article.frontpage_article_pictures.first.nil? %>
-      			  <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
-      			  <% end %>
+      		  
+      		  <% if not article.frontpage_article_pictures.first.nil? %>
 
-              <!-- <img src="images/recent_work/image_1.jpg" alt="image 1" /> -->
-      			  </a>
+      		    <%= link_to article.frontpage_article_pictures.first.article_image_url do %>
+      		      <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
+      		    <% end %>
+
+      		  <% else %>
+      		    <a href="images/recent_work/image_1.jpg"></a>
+      		  <% end %>
+      		  
+      		  
       			<div class="recent_work_overlay">
       				<div class="title"><%= article.title %></div>
               <!-- <div class="credits">Credits Craig Stanford</div> -->
@@ -114,7 +138,13 @@
 
     		  <% counter += 1 %>
     		<% end %>
-
+    		
+    		
+    		
+    		
+    		
+    		
+    		<!-- item 1 -->
     		<% counter = 1 %>
     		<% @latest_articles[0..5].each do |article| %>
     		  <% if counter%3 == 2 %>
@@ -130,13 +160,18 @@
     		  <% end %>
 
       		<div class="recent_work <%= center_marker %>  <%= top_marker%>">
-      			<a href="images/recent_work/image_1.jpg">
-      			  <% if not article.frontpage_article_pictures.first.nil? %>
-      			  <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
-      			  <% end %>
+      		  
+      		  <% if not article.frontpage_article_pictures.first.nil? %>
 
-              <!-- <img src="images/recent_work/image_1.jpg" alt="image 1" /> -->
-      			  </a>
+      		    <%= link_to article.frontpage_article_pictures.first.article_image_url do %>
+      		      <%= image_tag article.frontpage_article_pictures.first.front_page_image_url  %>
+      		    <% end %>
+
+      		  <% else %>
+      		    <a href="images/recent_work/image_1.jpg"></a>
+      		  <% end %>
+      		  
+      		  
       			<div class="recent_work_overlay">
       				<div class="title"><%= article.title %></div>
               <!-- <div class="credits">Credits Craig Stanford</div> -->
@@ -149,6 +184,10 @@
 
     		  <% counter += 1 %>
     		<% end %>
+    		
+    		
+    		
+
 
     	</li>				
 

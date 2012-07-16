@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-	$.getJSON('http://api.twitter.com/1/statuses/user_timeline/fresh_creations.json?count=2&callback=?', function(tweets){
-		$("div#tweets_right").html(format_twitter(tweets, 'right', '2'));
-		$("div#tweets_footer").html(format_twitter(tweets, 'footer', '1'));
-	});	
+/*  $.getJSON('http://api.twitter.com/1/statuses/user_timeline/fresh_creations.json?count=2&callback=?', function(tweets){
+    $("div#tweets_right").html(format_twitter(tweets, 'right', '2'));
+    $("div#tweets_footer").html(format_twitter(tweets, 'footer', '1'));
+  }); */
 	
 	$('div#box_close').click(function(){
 		$(this).parent().stop(true, true).animate({top: '-59px'});
