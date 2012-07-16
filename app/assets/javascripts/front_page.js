@@ -7,12 +7,3 @@
 //= require front_page/hoverIntent
 //= require front_page/superfish
 //= require front_page/jquery.functions
-
-
-<script type="text/javascript" src="includes/js/jquery-ui-1.8.21.custom.min.js"></script>
-<script type="text/javascript" src="includes/js/jquery.anythingslider.min.js"></script>
-<script type="text/javascript" src="includes/js/jquery.colorbox-min.js"></script>
-<script type="text/javascript" src="includes/js/twitter.js"></script>
-<script type="text/javascript" src="includes/js/hoverIntent.js"></script>
-<script type="text/javascript" src="includes/js/superfish.js"></script>	
-<script type="text/javascript" src="includes/js/jquery.functions.js"></script>
